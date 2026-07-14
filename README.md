@@ -79,6 +79,16 @@ not a thin demo script. The design emphasizes:
 Supporting research and legacy audit references are kept inside
 `genlayer-builder-agent/internal/` so the outward-facing package remains clean.
 
+## Demo Site
+
+For a live showcase deploy, the static Vercel-ready demo lives in:
+
+- `site/`
+
+Reviewer-facing submission notes also live in:
+
+- `submission-pack/`
+
 ## License
 
 MIT for first-party files in this repository. Vendored third-party materials
