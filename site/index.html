@@ -6,7 +6,7 @@
     <title>GenLayer Builder Agent</title>
     <meta
       name="description"
-      content="Production-style GenLayer builder agent for repo judging, non-determinism analysis, workflow gap detection, fix planning, and submission reporting."
+      content="Real GenLayer Builder Agent console for live GitHub repo analysis."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,174 +20,213 @@
     <div class="page-shell">
       <header class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">GenLayer-native builder tooling</p>
+          <p class="eyebrow">Live agent console</p>
           <h1>GenLayer Builder Agent</h1>
           <p class="lede">
-            A local-first agent package for judging repos, finding missing
-            non-deterministic execution, mapping workflow gaps, and producing
-            reviewer-ready submission reports.
+            Analyze a public GitHub repository with the real GenLayer Builder
+            Agent engine. The console fetches the repo, scans for GenLayer
+            signals, scores workflow coverage, and returns a live submission
+            report.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="https://github.com/Jinchainne/genlayer-builder-agent">View Repository</a>
-            <a class="button secondary" href="#submission-pack">See Submission Pack</a>
+            <a class="button primary" href="https://github.com/Jinchainne/genlayer-builder-agent">GitHub Repo</a>
+            <a class="button secondary" href="#agent-console">Open Console</a>
           </div>
         </div>
         <div class="hero-panel">
           <div class="status-card">
-            <span class="status-label">Operator Surface</span>
-            <strong>1 entrypoint</strong>
-            <span>3 profiles</span>
-            <span>5 focused diagnostics</span>
-            <span>JSON + Markdown outputs</span>
+            <span class="status-label">Runs live against GitHub</span>
+            <strong>No mock verdicts</strong>
+            <span>Real regex and repo traversal engine</span>
+            <span>Judge, coach, and submission profiles</span>
+            <span>JSON-backed live report rendering</span>
           </div>
           <div class="terminal-card">
             <div class="terminal-head">
               <span></span><span></span><span></span>
             </div>
-            <pre><code>node tools/run-genlayer-builder-agent.mjs &lt;repo&gt; --profile coach
+            <pre><code>POST /api/analyze
 
-judge -> nondet -> flow -> plan -> report
+input:
+- public GitHub repo URL
+- profile: judge | coach | submission
 
-profiles:
-- judge
-- coach
-- submission</code></pre>
+output:
+- verdict
+- checks
+- flow coverage
+- fix plan
+- markdown report</code></pre>
           </div>
         </div>
       </header>
 
       <main>
+        <section class="panel console-panel" id="agent-console">
+          <div class="console-top">
+            <div>
+              <p class="section-label">Agent Console</p>
+              <h2>Run a real repo analysis</h2>
+              <p class="helper-text">
+                Live demo supports public GitHub repository URLs. Local path
+                analysis remains available through the CLI package.
+              </p>
+            </div>
+            <div class="live-badge">Live API</div>
+          </div>
+
+          <form id="analyze-form" class="console-form">
+            <label class="field">
+              <span>Repository URL</span>
+              <input
+                id="repo-input"
+                name="repo"
+                type="url"
+                placeholder="https://github.com/owner/repo"
+                required
+              />
+            </label>
+            <label class="field">
+              <span>Profile</span>
+              <select id="profile-input" name="profile">
+                <option value="coach">coach</option>
+                <option value="judge">judge</option>
+                <option value="submission">submission</option>
+              </select>
+            </label>
+            <button class="button primary submit-button" type="submit" id="run-button">
+              Run Agent
+            </button>
+          </form>
+
+          <div class="preset-row">
+            <button class="preset-button" data-repo="https://github.com/Jinchainne/genlayer-builder-agent">
+              Analyze this repo
+            </button>
+            <button class="preset-button" data-repo="https://github.com/genlayerlabs">
+              Paste your own public repo instead
+            </button>
+          </div>
+
+          <div class="agent-status" id="status-box">
+            Waiting for input.
+          </div>
+        </section>
+
         <section class="grid-section">
-          <article class="panel">
-            <p class="section-label">Why it matters</p>
-            <h2>Built for technical reviewers, not vague AI hype</h2>
-            <p>
-              The package focuses on the two checks that make or break many
-              GenLayer submissions: meaningful non-deterministic execution and
-              a real application-to-contract workflow.
+          <article class="panel summary-panel">
+            <p class="section-label">Summary</p>
+            <div class="report-head">
+              <span class="pill neutral" id="verdict-pill">idle</span>
+              <span class="mono" id="profile-pill">profile: coach</span>
+            </div>
+            <h2 id="repo-title">No repository analyzed yet</h2>
+            <p id="repo-description">
+              Run the agent to populate live verdict, score, and repository
+              metadata.
             </p>
+            <div class="metrics result-metrics">
+              <div>
+                <span class="metric" id="fit-score">0</span>
+                <p>fit score</p>
+              </div>
+              <div>
+                <span class="metric" id="repo-stars">0</span>
+                <p>GitHub stars</p>
+              </div>
+              <div>
+                <span class="metric" id="repo-branch">-</span>
+                <p>default branch</p>
+              </div>
+            </div>
           </article>
-          <article class="panel metrics">
-            <div>
-              <span class="metric">3</span>
-              <p>operating profiles</p>
-            </div>
-            <div>
-              <span class="metric">5</span>
-              <p>audit commands</p>
-            </div>
-            <div>
-              <span class="metric">2</span>
-              <p>output formats</p>
+
+          <article class="panel">
+            <p class="section-label">Checks</p>
+            <h2>Core readiness signals</h2>
+            <div class="check-grid" id="check-grid">
+              <div class="check-card"><strong>Meaningful non-determinism</strong><span>waiting</span></div>
+              <div class="check-card"><strong>App-to-contract path</strong><span>waiting</span></div>
+              <div class="check-card"><strong>Observable outcome</strong><span>waiting</span></div>
+              <div class="check-card"><strong>Reviewer proof</strong><span>waiting</span></div>
             </div>
           </article>
         </section>
 
+        <section class="two-column">
+          <article class="panel">
+            <p class="section-label">Flow Coverage</p>
+            <h2>Deploy to read-back map</h2>
+            <div class="flow-grid" id="flow-grid">
+              <div><strong>Deploy</strong><span>waiting</span></div>
+              <div><strong>Submit</strong><span>waiting</span></div>
+              <div><strong>Resolve</strong><span>waiting</span></div>
+              <div><strong>Read-back</strong><span>waiting</span></div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <p class="section-label">Reviewer Notes</p>
+            <h2>What the agent would tell a reviewer</h2>
+            <ul class="risk-list" id="reviewer-notes">
+              <li>Waiting for analysis.</li>
+            </ul>
+          </article>
+        </section>
+
         <section class="panel">
-          <p class="section-label">Tool Suite</p>
-          <h2>Focused commands that compose into one agent workflow</h2>
-          <div class="tool-grid">
+          <p class="section-label">Evidence</p>
+          <h2>Live code signals surfaced by the agent</h2>
+          <div class="evidence-grid">
             <article>
-              <h3>Judge</h3>
-              <p>Returns verdict, evidence, risks, and top fixes for a repo.</p>
+              <h3>Non-determinism</h3>
+              <ul class="evidence-list" id="evidence-nondet">
+                <li>No evidence yet.</li>
+              </ul>
             </article>
             <article>
-              <h3>Nondeterminism Scan</h3>
-              <p>Looks for GenLayer-native reasoning paths and observable outcomes.</p>
+              <h3>Execution Path</h3>
+              <ul class="evidence-list" id="evidence-execution">
+                <li>No evidence yet.</li>
+              </ul>
             </article>
             <article>
-              <h3>Flow Finder</h3>
-              <p>Checks deploy, submit, resolve, and read-back coverage.</p>
-            </article>
-            <article>
-              <h3>Fix Plan</h3>
-              <p>Creates prioritized repair steps that are submission-oriented.</p>
-            </article>
-            <article>
-              <h3>Submission Report</h3>
-              <p>Exports reviewer-friendly Markdown or machine-readable JSON.</p>
+              <h3>Outcome Signals</h3>
+              <ul class="evidence-list" id="evidence-outcome">
+                <li>No evidence yet.</li>
+              </ul>
             </article>
           </div>
         </section>
 
         <section class="two-column">
           <article class="panel">
-            <p class="section-label">Example Report</p>
-            <h2>Real output from the current repo</h2>
-            <div class="report-head">
-              <span class="pill fail">FAIL</span>
-              <span class="mono">sample operator output</span>
-            </div>
-            <div class="flow-grid">
-              <div><strong>Deploy</strong><span>missing</span></div>
-              <div><strong>Submit</strong><span>missing</span></div>
-              <div><strong>Resolve</strong><span>missing</span></div>
-              <div><strong>Read-back</strong><span>missing</span></div>
-            </div>
-            <ul class="risk-list">
-              <li>Missing proof of meaningful GenLayer-native non-deterministic execution.</li>
-              <li>Missing a clear execution path from app or agent code into the GenLayer contract layer.</li>
-              <li>Missing proof that the project persists or makes the contract outcome observable.</li>
+            <p class="section-label">Risks</p>
+            <h2>Current blockers</h2>
+            <ul class="risk-list" id="risk-list">
+              <li>Run the agent to see live risks.</li>
             </ul>
           </article>
 
           <article class="panel">
-            <p class="section-label">Command Pack</p>
-            <h2>Copy-ready commands</h2>
-            <div class="command-list">
-              <button class="copy-card" data-copy="node genlayer-builder-agent/tools/run-genlayer-builder-agent.mjs <repo> --profile coach">
-                <span>Coach profile</span>
-                <code>node ...run-genlayer-builder-agent.mjs &lt;repo&gt; --profile coach</code>
-              </button>
-              <button class="copy-card" data-copy="node genlayer-builder-agent/tools/judge-genlayer-builder.mjs <repo> --json">
-                <span>Repo verdict</span>
-                <code>node ...judge-genlayer-builder.mjs &lt;repo&gt; --json</code>
-              </button>
-              <button class="copy-card" data-copy="node genlayer-builder-agent/tools/create-submission-report.mjs <repo> --json">
-                <span>Submission report</span>
-                <code>node ...create-submission-report.mjs &lt;repo&gt; --json</code>
-              </button>
-            </div>
-            <p class="helper-text" id="copy-feedback">Click any card to copy the command.</p>
+            <p class="section-label">Fix Plan</p>
+            <h2>Prioritized next actions</h2>
+            <ul class="risk-list" id="fix-plan">
+              <li>Run the agent to generate a fix plan.</li>
+            </ul>
           </article>
         </section>
 
-        <section class="panel" id="submission-pack">
-          <p class="section-label">Submission Pack</p>
-          <h2>What this repo can present in a project submission</h2>
-          <div class="submission-grid">
-            <article>
-              <h3>Product Positioning</h3>
-              <p>
-                Positions the project as a serious builder utility for GenLayer
-                teams preparing demos, audits, and reviewer-facing repos.
-              </p>
-            </article>
-            <article>
-              <h3>Operational Story</h3>
-              <p>
-                Shows one clear agent journey: judge the repo, inspect
-                non-determinism, find missing flow, generate fixes, export a report.
-              </p>
-            </article>
-            <article>
-              <h3>Next Build Step</h3>
-              <p>
-                The strongest upgrade path is adding a live GenLayer demo flow so
-                the agent can evaluate an actual contract-backed app end to end.
-              </p>
-            </article>
-          </div>
-        </section>
-
         <section class="panel">
-          <p class="section-label">Roadmap</p>
-          <h2>How to turn this into a stronger GenLayer-native project</h2>
-          <ol class="roadmap">
-            <li>Add a demo intelligent contract with `gl.nondet.web.get(...)` or `gl.nondet.exec_prompt(...)`.</li>
-            <li>Add a minimal client flow for deploy, submit, resolve, and read-back.</li>
-            <li>Feed live contract results back into the report so the site can show proof, not just static claims.</li>
-          </ol>
+          <p class="section-label">Submission Report</p>
+          <h2>Markdown export generated by the agent</h2>
+          <div class="markdown-toolbar">
+            <button class="button secondary" id="copy-markdown" type="button">
+              Copy Markdown
+            </button>
+            <span class="helper-text" id="copy-feedback">No report copied yet.</span>
+          </div>
+          <pre class="markdown-output"><code id="markdown-output">Run the agent to generate a live Markdown report.</code></pre>
         </section>
       </main>
     </div>
