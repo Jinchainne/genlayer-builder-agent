@@ -1,14 +1,14 @@
 {
-  "name": "internet-court",
+  "name": "genlayer-builder-agent",
   "owner": {
-    "name": "Internet Court Consortium"
+    "name": "Jinchainne"
   },
-  "description": "Internet Court \u2014 the trust layer for agent-to-agent commerce.",
+  "description": "GenLayer builder agent for review, diagnosis, fix planning, and submission reporting.",
   "plugins": [
     {
-      "name": "internet-court",
+      "name": "genlayer-builder-agent",
       "source": "./",
-      "description": "Entry point for Internet Court and the agentic economy stack: natural-language mandates, ERC-7710 delegated permissions, x402 payments, escrow, GenLayer dispute resolution, and the vendored protocol + connector skills it routes to.",
+      "description": "Local-first GenLayer builder agent with repo judging, non-determinism scanning, flow-gap diagnosis, fix-plan generation, and submission reporting.",
       "version": "0.1.0",
       "license": "MIT"
     }

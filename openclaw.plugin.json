@@ -1,7 +1,7 @@
 {
-  "id": "internet-court",
-  "name": "Internet Court",
-  "description": "Internet Court \u2014 the trust layer for agent-to-agent commerce.",
+  "id": "genlayer-builder-agent",
+  "name": "GenLayer Builder Agent",
+  "description": "Local-first GenLayer builder agent for review, diagnosis, fix planning, and submission reporting.",
   "version": "0.1.0",
   "skills": [
     "./"
