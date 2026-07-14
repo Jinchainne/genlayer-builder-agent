@@ -46,11 +46,9 @@ This repository contains several layers of material:
 
 - `genlayer-builder-agent/`
   The public-facing builder agent package.
-- `genlayer-skill/`
-  Supplemental GenLayer review references and local helper logic.
-- `integrations/`
-  Integration notes and supporting patterns.
-- `vendored/`
+- `genlayer-builder-agent/internal/genlayer-audit-pack/`
+  Supplemental deep-audit references and a legacy helper script.
+- `genlayer-builder-agent/third_party/vendored/`
   Vendored reference materials from external projects.
 
 Prefer the public-facing builder agent package first unless the task clearly

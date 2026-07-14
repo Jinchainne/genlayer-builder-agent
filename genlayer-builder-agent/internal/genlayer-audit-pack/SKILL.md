@@ -1,9 +1,9 @@
 ---
-name: genlayer-builder-submission
+name: genlayer-builder-deep-audit
 description: Enforce GenLayer builder-project requirements for repos, demos, tools, and agents. Use when building, reviewing, rewriting, documenting, or preparing any GenLayer project so the result matches GenLayer-native expectations: strong adjudication fit, meaningful non-deterministic intelligent-contract execution, real app-to-contract workflow, real contract reads and writes, persisted on-chain outcomes, reviewer-friendly README and demo proof, and clean validation signals. Also use when preventing or fixing the two common rejection patterns: (1) deterministic-only contracts with no meaningful GenLayer consensus result, and (2) static UI or CLI-only repos without a real GenLayer client path that reads and writes the submitted contract and binds policy results to execution.
 ---
 
-# GenLayer Builder Submission Skill
+# GenLayer Builder Deep Audit Pack
 
 Use this skill as a hard readiness gate for any GenLayer project.
 

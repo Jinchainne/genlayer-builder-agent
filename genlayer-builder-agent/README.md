@@ -3,6 +3,10 @@
 GenLayer Builder Agent is a local-first agent package for reviewing,
 diagnosing, and improving GenLayer repos before submission.
 
+It is specifically aimed at GenLayer projects where meaningful non-deterministic
+execution, real deploy-submit-resolve-read-back flow, and reviewer-visible
+proof determine whether the repo looks submission-ready.
+
 It is built around a practical workflow:
 
 1. judge the repo
@@ -10,6 +14,10 @@ It is built around a practical workflow:
 3. find missing app-to-contract flow
 4. generate a fix plan
 5. produce a reviewer-facing report
+
+The package is designed to feel like a real operator tool: one entrypoint,
+clear profiles, narrow diagnostics, and outputs that can be reused in a build
+or review pipeline.
 
 ## Why this looks like a real agent project
 
@@ -20,6 +28,7 @@ This package follows patterns used by strong open-source agent systems:
 - local-first execution against a real workspace
 - machine-readable JSON outputs
 - explicit operator guidance through `AGENTS.md`
+- a clean public package boundary with internal audit materials kept separate
 
 ## Main entrypoint
 
@@ -71,6 +80,8 @@ The suite is designed to answer:
   executable commands
 - `tools/lib/`
   shared repo-analysis logic
+- `internal/genlayer-audit-pack/`
+  deeper GenLayer review references and helper tooling kept behind the main package surface
 - `profiles/`
   agent operating modes
 - `schemas/`
@@ -79,3 +90,5 @@ The suite is designed to answer:
   recommended sequencing
 - `references/`
   review guidance
+- `third_party/vendored/`
+  vendored external reference materials

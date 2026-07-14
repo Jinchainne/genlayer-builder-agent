@@ -1,7 +1,11 @@
 # GenLayer Builder Agent
 
 GenLayer Builder Agent is a local-first review and builder package for
-GenLayer projects.
+GenLayer projects that need to look credible to technical reviewers.
+
+It is designed for projects where non-deterministic intelligent-contract
+execution, real app-to-contract flow, and reviewer-proof submission quality all
+matter to whether a build is credible.
 
 It helps with:
 
@@ -10,6 +14,10 @@ It helps with:
 - finding missing deploy, submit, resolve, and read-back flows
 - generating fix plans for submission readiness
 - producing reviewer-facing submission reports
+
+The public surface is intentionally concentrated in one package so the
+repository reads like a focused product instead of a loose collection of
+experiments.
 
 ## Main package
 
@@ -47,9 +55,14 @@ Append `--json` for machine-readable output.
 
 ```text
 genlayer-builder-agent/     Main builder-agent package
-genlayer-skill/             Supporting GenLayer review references and helpers
-integrations/               Supporting integration notes and patterns
-vendored/                   Vendored external skill references
+```
+
+Inside `genlayer-builder-agent/`:
+
+```text
+internal/genlayer-audit-pack/   Deep GenLayer review references and helper tool
+third_party/vendored/           Vendored external reference materials
+third_party/skills-lock.json    Vendored source index
 ```
 
 ## Positioning
@@ -62,6 +75,9 @@ not a thin demo script. The design emphasizes:
 - specialized audit tools
 - local-first execution
 - machine-readable outputs
+
+Supporting research and legacy audit references are kept inside
+`genlayer-builder-agent/internal/` so the outward-facing package remains clean.
 
 ## License
 

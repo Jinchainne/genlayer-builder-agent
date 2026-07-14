@@ -1,9 +1,9 @@
 {
   "name": "genlayer-builder-agent",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "A local-first tool suite for judging, diagnosing, and improving GenLayer projects.",
+  "description": "A production-style local-first agent suite for judging, diagnosing, and improving GenLayer projects.",
   "bin": {
     "run-genlayer-builder-agent": "./tools/run-genlayer-builder-agent.mjs",
     "judge-genlayer-builder": "./tools/judge-genlayer-builder.mjs",

@@ -10,13 +10,13 @@ This is a local-only helper for fast pass/fail review against:
 From the workspace root:
 
 ```bash
-node genlayer-builder-submission-skill/tools/judge-genlayer-repo.mjs https://github.com/owner/repo
+node genlayer-builder-agent/internal/genlayer-audit-pack/tools/judge-genlayer-repo.mjs https://github.com/owner/repo
 ```
 
 Or point it at a local repo:
 
 ```bash
-node genlayer-builder-submission-skill/tools/judge-genlayer-repo.mjs C:\path\to\repo
+node genlayer-builder-agent/internal/genlayer-audit-pack/tools/judge-genlayer-repo.mjs C:\path\to\repo
 ```
 
 ## What It Checks

@@ -1,7 +1,7 @@
 # GenLayer Builder Agent Tool Suite
 
-This folder contains a small local-first tool suite for reviewing and improving
-GenLayer repos.
+This folder contains the main local-first tool suite for reviewing and
+improving GenLayer repos.
 
 ## Tools
 
@@ -30,6 +30,10 @@ node genlayer-builder-agent/tools/create-submission-report.mjs <repo>
 ```
 
 Append `--json` to any command for machine-readable output.
+
+The commands in this folder are the public operator surface of the project.
+Deeper references and legacy audit helpers live under
+`../internal/genlayer-audit-pack/`.
 
 ## Project Scripts
 

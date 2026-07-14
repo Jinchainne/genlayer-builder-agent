@@ -1,7 +1,7 @@
 {
   "name": "genlayer-builder-agent",
-  "description": "Local-first GenLayer builder agent for judging repos, diagnosing missing non-determinism and flow coverage, generating fix plans, and producing submission reports.",
-  "version": "0.1.0",
+  "description": "Production-style GenLayer builder agent for repo judging, non-determinism analysis, workflow gap detection, fix planning, and submission reporting.",
+  "version": "0.2.0",
   "author": {
     "name": "Jinchainne",
     "url": "https://github.com/Jinchainne"
@@ -16,7 +16,9 @@
     "submission",
     "nondeterminism",
     "review",
-    "audit"
+    "audit",
+    "workflow",
+    "contracts"
   ],
   "skills": [
     "./genlayer-builder-agent"

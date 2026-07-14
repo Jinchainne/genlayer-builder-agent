@@ -2,7 +2,7 @@
 
 This repository includes first-party files for the `genlayer-builder-agent`
 package and a number of vendored third-party reference materials under
-`vendored/`.
+`genlayer-builder-agent/third_party/vendored/`.
 
 ## First-party work
 
@@ -11,14 +11,15 @@ surface:
 
 - root package files such as `README.md`, `SKILL.md`, and plugin manifests
 - the `genlayer-builder-agent/` package
-- supporting local helper material under `genlayer-skill/` and `integrations/`
+- supporting local helper material under `genlayer-builder-agent/internal/`
 
 These first-party files are released under the repository MIT license unless a
 file states otherwise.
 
 ## Vendored materials
 
-Files under `vendored/` remain subject to their upstream licenses and notices.
+Files under `genlayer-builder-agent/third_party/vendored/` remain subject to
+their upstream licenses and notices.
 They are included as reference material and should be reviewed according to the
 terms shipped with each vendored package.
 

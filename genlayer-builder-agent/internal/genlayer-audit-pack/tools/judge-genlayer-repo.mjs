@@ -36,11 +36,11 @@ const TEXT_EXTENSIONS = new Set([
 
 function usage() {
   console.log(`Usage:
-  node genlayer-builder-submission-skill/tools/judge-genlayer-repo.mjs <repo-url-or-local-path>
+  node genlayer-builder-agent/internal/genlayer-audit-pack/tools/judge-genlayer-repo.mjs <repo-url-or-local-path>
 
 Examples:
-  node genlayer-builder-submission-skill/tools/judge-genlayer-repo.mjs https://github.com/Jinchainne/genlayer-evidence-resolution-agent
-  node genlayer-builder-submission-skill/tools/judge-genlayer-repo.mjs C:\\work\\my-genlayer-repo
+  node genlayer-builder-agent/internal/genlayer-audit-pack/tools/judge-genlayer-repo.mjs https://github.com/Jinchainne/genlayer-evidence-resolution-agent
+  node genlayer-builder-agent/internal/genlayer-audit-pack/tools/judge-genlayer-repo.mjs C:\\work\\my-genlayer-repo
 `);
 }
 

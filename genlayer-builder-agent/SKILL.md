@@ -220,6 +220,17 @@ This package includes a multi-tool workflow rather than a single command:
 Prefer starting with the main judge, then narrow into the specialized tools as
 needed.
 
+## Internal Deep Audit Pack
+
+For deeper repo review logic and richer GenLayer review references, this
+package also includes:
+
+- `internal/genlayer-audit-pack/SKILL.md`
+- `internal/genlayer-audit-pack/tools/judge-genlayer-repo.mjs`
+
+Treat that pack as an internal advanced reference layer, not as the main public
+entrypoint.
+
 ## Global Agent Patterns Behind This Design
 
 This project intentionally borrows patterns that strong open-source agents use:

@@ -15,15 +15,19 @@ export function collectSignals(repoPath) {
   const codeFiles = filterFiles(repoPath, files, (name) => {
     const ext = path.extname(name).toLowerCase();
     const isCode = [".ts", ".tsx", ".js", ".mjs", ".cjs", ".py", ".sol", ".rs"].includes(ext);
-    const isVendored = name.startsWith("vendored/");
+    const isVendored =
+      name.startsWith("vendored/") ||
+      name.startsWith("third_party/vendored/") ||
+      name.includes("/third_party/vendored/");
     const isThisPackage = name.startsWith("genlayer-builder-agent/");
     const isJudgeHelper = /(^|\/)tools\/(judge|scan|find|generate|create)-.*\.(mjs|js|ts)$/i.test(name);
     const isInternalLib = /(^|\/)tools\/lib\/.+\.(mjs|js|ts)$/i.test(name);
+    const isInternalAuditPack = /(^|\/)internal\/genlayer-audit-pack\/.+/i.test(name);
     const isReferenceDoc =
       name.includes("/references/") ||
       /(^|\/)(readme|skill)\.md$/i.test(name) ||
       /\.md$/i.test(name);
-    return isCode && !isVendored && !isThisPackage && !isJudgeHelper && !isInternalLib && !isReferenceDoc;
+    return isCode && !isVendored && !isThisPackage && !isJudgeHelper && !isInternalLib && !isInternalAuditPack && !isReferenceDoc;
   });
 
   const readmePath =
