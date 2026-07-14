@@ -1,0 +1,23 @@
+{
+  "name": "genlayer-builder-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A local-first tool suite for judging, diagnosing, and improving GenLayer projects.",
+  "bin": {
+    "run-genlayer-builder-agent": "./tools/run-genlayer-builder-agent.mjs",
+    "judge-genlayer-builder": "./tools/judge-genlayer-builder.mjs",
+    "scan-genlayer-nondeterminism": "./tools/scan-nondeterminism.mjs",
+    "find-genlayer-missing-flow": "./tools/find-missing-flow.mjs",
+    "generate-genlayer-fix-plan": "./tools/generate-fix-plan.mjs",
+    "create-genlayer-submission-report": "./tools/create-submission-report.mjs"
+  },
+  "scripts": {
+    "agent": "node ./tools/run-genlayer-builder-agent.mjs . --profile coach",
+    "judge": "node ./tools/judge-genlayer-builder.mjs .",
+    "nondet": "node ./tools/scan-nondeterminism.mjs .",
+    "flow": "node ./tools/find-missing-flow.mjs .",
+    "plan": "node ./tools/generate-fix-plan.mjs .",
+    "report": "node ./tools/create-submission-report.mjs ."
+  }
+}

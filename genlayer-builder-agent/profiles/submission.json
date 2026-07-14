@@ -1,0 +1,12 @@
+{
+  "name": "submission",
+  "goal": "Produce a reviewer-facing readiness report for a GenLayer submission.",
+  "sections": [
+    "summary",
+    "checks",
+    "flow",
+    "risks",
+    "fixPlan",
+    "reviewerNotes"
+  ]
+}

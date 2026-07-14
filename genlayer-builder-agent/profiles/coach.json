@@ -1,0 +1,11 @@
+{
+  "name": "coach",
+  "goal": "Explain what is missing and how to fix it in the shortest path to readiness.",
+  "sections": [
+    "summary",
+    "checks",
+    "flow",
+    "risks",
+    "fixPlan"
+  ]
+}

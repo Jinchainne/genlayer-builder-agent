@@ -1,0 +1,9 @@
+{
+  "name": "judge",
+  "goal": "Return a concise readiness verdict with evidence and risks.",
+  "sections": [
+    "summary",
+    "checks",
+    "risks"
+  ]
+}

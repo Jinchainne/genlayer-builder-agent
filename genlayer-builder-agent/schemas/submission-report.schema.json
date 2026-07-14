@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GenLayer Submission Report",
+  "type": "object",
+  "required": [
+    "source",
+    "verdict",
+    "flowChecks",
+    "risks",
+    "plan",
+    "markdown"
+  ],
+  "properties": {
+    "source": {
+      "type": "string"
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["PASS", "BORDERLINE", "FAIL"]
+    },
+    "flowChecks": {
+      "type": "object",
+      "required": ["deploy", "submit", "resolve", "readBack"],
+      "properties": {
+        "deploy": { "type": "boolean" },
+        "submit": { "type": "boolean" },
+        "resolve": { "type": "boolean" },
+        "readBack": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "risks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "plan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["priority", "area", "action"],
+        "properties": {
+          "priority": { "type": "string" },
+          "area": { "type": "string" },
+          "action": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "markdown": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

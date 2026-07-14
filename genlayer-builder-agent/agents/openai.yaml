@@ -1,0 +1,7 @@
+name: genlayer-builder-agent
+description: GenLayer builder agent that judges repo readiness, diagnoses missing non-determinism and flow coverage, and generates submission reports.
+entry: tools/run-genlayer-builder-agent.mjs
+args:
+  - "<repo>"
+  - "--profile"
+  - "coach"
