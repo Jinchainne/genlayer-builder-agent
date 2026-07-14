@@ -1,16 +1,6 @@
 MIT License
 
-Copyright (c) 2026 Internet Court Consortium
-
-This MIT license applies ONLY to the Internet Court–authored parts of this
-package: the root SKILL.md router, README.md, and everything under integrations/.
-
-It does NOT apply to anything under vendored/. Each vendored skill is the
-property of its respective owner and is redistributed under its own license,
-included as a LICENSE file inside that skill's folder. See NOTICE.md at the
-package root for the per-component license and copyright manifest.
-
----
+Copyright (c) 2026 Jinchainne
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

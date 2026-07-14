@@ -4,7 +4,7 @@
   "description": "Local-first GenLayer builder agent for review, diagnosis, fix planning, and submission reporting.",
   "version": "0.1.0",
   "skills": [
-    "./"
+    "./genlayer-builder-agent"
   ],
   "configSchema": {
     "type": "object",

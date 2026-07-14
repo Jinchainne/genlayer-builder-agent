@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "genlayer-builder-agent",
-      "source": "./",
+      "source": "./genlayer-builder-agent",
       "description": "Local-first GenLayer builder agent with repo judging, non-determinism scanning, flow-gap diagnosis, fix-plan generation, and submission reporting.",
       "version": "0.1.0",
       "license": "MIT"
