@@ -68,7 +68,7 @@ body::after {
   z-index: 1;
   width: min(1320px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 24px 0 88px;
+  padding: 16px 0 88px;
 }
 
 .topbar,
@@ -95,15 +95,18 @@ body::after {
 }
 
 .topbar {
+  position: sticky;
+  top: 12px;
+  z-index: 30;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   margin-bottom: 22px;
   padding: 16px 18px;
   border: 1px solid rgba(243, 223, 178, 0.12);
-  border-radius: 999px;
-  background: rgba(9, 15, 25, 0.76);
-  backdrop-filter: blur(18px);
-  box-shadow: var(--shadow);
+  border-radius: 22px;
+  background: rgba(9, 15, 25, 0.72);
+  backdrop-filter: blur(22px) saturate(130%);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
 }
 
 .brand {
@@ -155,6 +158,11 @@ body::after {
   text-decoration: none;
   font-size: 0.95rem;
   color: #d9e3f6;
+  transition: color 160ms ease, opacity 160ms ease;
+}
+
+.topbar-nav a:hover {
+  color: var(--champagne);
 }
 
 .topbar-status {
@@ -885,6 +893,7 @@ textarea:focus {
   .topbar {
     grid-template-columns: 1fr;
     justify-items: start;
+    top: 10px;
   }
 
   .topbar-nav {
@@ -895,7 +904,7 @@ textarea:focus {
 @media (max-width: 720px) {
   .page-shell {
     width: min(100% - 20px, 1320px);
-    padding-top: 14px;
+    padding-top: 10px;
   }
 
   .hero-copy,
