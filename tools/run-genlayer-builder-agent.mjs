@@ -84,6 +84,7 @@ function printHuman(result) {
   console.log(`- Deploy: ${result.flow.deploy ? "present" : "missing"}`);
   console.log(`- Submit: ${result.flow.submit ? "present" : "missing"}`);
   console.log(`- Resolve: ${result.flow.resolve ? "present" : "missing"}`);
+  console.log(`- Claim: ${result.flow.claim ? "present" : "missing"}`);
   console.log(`- Read-back: ${result.flow.readBack ? "present" : "missing"}`);
   console.log("");
   if (result.risks.length) {

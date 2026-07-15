@@ -25,6 +25,7 @@ function buildMarkdown(source, signals, classification, plan) {
   lines.push(`- Deploy: ${signals.flowChecks.deploy ? "present" : "missing"}`);
   lines.push(`- Submit: ${signals.flowChecks.submit ? "present" : "missing"}`);
   lines.push(`- Resolve: ${signals.flowChecks.resolve ? "present" : "missing"}`);
+  lines.push(`- Claim: ${signals.flowChecks.claim ? "present" : "missing"}`);
   lines.push(`- Read-back: ${signals.flowChecks.readBack ? "present" : "missing"}`);
   lines.push("");
   lines.push("## Risks");

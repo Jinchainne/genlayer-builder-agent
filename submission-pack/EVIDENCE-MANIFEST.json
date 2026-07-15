@@ -19,8 +19,9 @@
     "nondetWebCalls": 1,
     "nondetConsensusCalls": 1,
     "deployCalls": 3,
-    "writeCalls": 8,
-    "readCalls": 2
+    "writeCalls": 10,
+    "readCalls": 2,
+    "claimReleaseCalls": 3
   },
   "proofPaths": {
     "contract": "contracts/genlayer_builder_dispute_agent.py",

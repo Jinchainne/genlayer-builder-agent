@@ -4,7 +4,7 @@ GenLayer Builder Agent is a local-first agent package for reviewing,
 diagnosing, and improving GenLayer repos before submission.
 
 It is specifically aimed at GenLayer projects where meaningful non-deterministic
-execution, real deploy-submit-resolve-read-back flow, and reviewer-visible
+execution, real deploy-submit-resolve-claim-read-back flow, and reviewer-visible
 proof determine whether the repo looks submission-ready.
 
 It is built around a practical workflow:
@@ -30,7 +30,9 @@ that exact pattern:
 - `gl.nondet.web.get(...)` evidence fetches
 - `gl.nondet.exec_prompt(...)` structured judgment
 - `gl.vm.run_nondet_unsafe(...)` validator comparison
-- deploy -> submit -> resolve -> read-back execution flow
+- deploy -> submit -> resolve -> claim release -> read-back execution flow
+- receipt inspection that fails closed when execution_result is not successful
+- frontend validation that blocks empty or malformed wallet, address, URL, and GEN inputs before signing
 
 That means the repository is no longer just describing adjudication in prose.
 It now contains a concrete GenLayer-native path where consensus, evidence,
@@ -82,6 +84,17 @@ npm run plan
 npm run report
 ```
 
+## Deploy Proof
+
+The repository also includes official-style deploy scripts in `deploy/` so a
+reviewer can verify that the contract is not only present, but packaged for a
+real deployment workflow:
+
+```bash
+deploy/001_deploy_dispute_agent.mjs
+deploy/999_verify_dispute_agent.mjs
+```
+
 ## Judge Quick Verify
 
 If a reviewer has only a few minutes, these are the shortest paths:
@@ -107,7 +120,7 @@ The suite is designed to answer:
 
 - is this a real GenLayer project?
 - does the contract do meaningful non-deterministic work?
-- is there a real deploy, submit, resolve, and read-back path?
+- is there a real deploy, submit, resolve, claim, and read-back path?
 - what is missing for submission readiness?
 
 ## Repo structure
@@ -130,5 +143,7 @@ The suite is designed to answer:
   real client integration path
 - `site/`
   Vercel-deployed live demo and agent console
+- `deploy/`
+  deployment and post-deploy verification scripts
 - `submission-pack/`
   reviewer-facing submission materials

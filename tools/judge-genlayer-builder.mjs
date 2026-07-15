@@ -46,6 +46,7 @@ function printReport(source, signals, classification, fixPlan) {
   console.log(`Deploy: ${signals.flowChecks.deploy ? "yes" : "no"}`);
   console.log(`Submit: ${signals.flowChecks.submit ? "yes" : "no"}`);
   console.log(`Resolve: ${signals.flowChecks.resolve ? "yes" : "no"}`);
+  console.log(`Claim: ${signals.flowChecks.claim ? "yes" : "no"}`);
   console.log(`Read-back: ${signals.flowChecks.readBack ? "yes" : "no"}`);
   console.log("");
   console.log("README Signals");

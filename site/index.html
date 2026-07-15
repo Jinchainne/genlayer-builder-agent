@@ -90,7 +90,7 @@
               <div class="stat-card">
                 <span class="mini-label">Contract flow</span>
                 <strong>Real</strong>
-                <span>Deploy, submit, resolve, read-back.</span>
+                <span>Deploy, submit, resolve, claim, read-back.</span>
               </div>
               <div class="stat-card">
                 <span class="mini-label">Output</span>
@@ -230,7 +230,7 @@ output:
             </div>
             <div class="defense-card">
               <strong>No static app-to-contract story</strong>
-              <p>The repository ships deploy, write, resolve, and read-back code in both client and browser UI layers.</p>
+              <p>The repository ships deploy, write, resolve, claim-release, and read-back code in both client and browser UI layers.</p>
             </div>
             <div class="defense-card">
               <strong>No silent fallback</strong>
@@ -382,8 +382,10 @@ output:
                 <div class="button-stack">
                   <button class="button secondary" id="submit-response-button" type="button">Submit Response</button>
                   <button class="button primary" id="resolve-case-button" type="button">Resolve Case</button>
+                  <button class="button secondary" id="claim-release-button" type="button">Claim Release</button>
                   <button class="button secondary" id="read-case-button" type="button">Read Case</button>
                 </div>
+                <p class="helper-text">Use the same case ID through submit, resolve, claim, and read-back so reviewers can verify the full escrow lifecycle.</p>
               </div>
             </article>
           </div>
@@ -447,6 +449,7 @@ output:
               <div><strong>Deploy</strong><span>waiting</span></div>
               <div><strong>Submit</strong><span>waiting</span></div>
               <div><strong>Resolve</strong><span>waiting</span></div>
+              <div><strong>Claim</strong><span>waiting</span></div>
               <div><strong>Read-back</strong><span>waiting</span></div>
             </div>
           </article>

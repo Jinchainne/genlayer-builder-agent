@@ -250,6 +250,7 @@ function collectSignalsFromFiles(files) {
     writeContract: findMatches(codeFiles, /writeContract\s*\(/g),
     deployContract: findMatches(codeFiles, /deployContract\s*\(/g),
     waitReceipt: findMatches(codeFiles, /waitForTransactionReceipt\s*\(|wait.*receipt/gi),
+    claimRelease: findMatches(codeFiles, /claim_release|claimDisputeRelease|Claim Release/gi),
     genlayerMentions: findMatches(codeFiles, /\bgenlayer\b|intelligent contract|validator/gi),
     statePersistence: findMatches(codeFiles, /storage|result|verdict|resolved|accepted|state/gi),
     caseSubmission: findMatches(codeFiles, /submit|create case|create market|open case|claim/gi),
@@ -297,6 +298,7 @@ function collectSignalsFromFiles(files) {
     deploy: evidence.deployContract.length > 0,
     submit: evidence.writeContract.length > 0 || evidence.caseSubmission.length > 0,
     resolve: evidence.resolution.length > 0 || evidence.nondetPrompt.length > 0 || evidence.nondetWeb.length > 0,
+    claim: evidence.claimRelease.length > 0,
     readBack: evidence.readContract.length > 0 || evidence.publicView.length > 0,
   };
 
@@ -404,6 +406,13 @@ function buildFixPlan(signals, classification) {
       action: "Add a read-back view or contract read so the on-chain result is visible after execution.",
     });
   }
+  if (!flowChecks.claim) {
+    items.push({
+      priority: "P1",
+      area: "client",
+      action: "Add a claim-release flow or an explicit post-resolution payout path so reviewers can verify the final escrow outcome.",
+    });
+  }
   if (!checks.hasReviewerProof) {
     items.push({
       priority: "P1",
@@ -415,7 +424,7 @@ function buildFixPlan(signals, classification) {
     items.push({
       priority: "P1",
       area: "docs",
-      action: "Rewrite the README to explain why the project belongs on GenLayer and show deploy -> submit -> resolve -> read-back verification.",
+      action: "Rewrite the README to explain why the project belongs on GenLayer and show deploy -> submit -> resolve -> claim -> read-back verification.",
     });
   }
   if (!signals.workflowFiles.length) {
@@ -452,6 +461,7 @@ function buildMarkdown(source, signals, classification, plan) {
   lines.push(`- Deploy: ${signals.flowChecks.deploy ? "present" : "missing"}`);
   lines.push(`- Submit: ${signals.flowChecks.submit ? "present" : "missing"}`);
   lines.push(`- Resolve: ${signals.flowChecks.resolve ? "present" : "missing"}`);
+  lines.push(`- Claim: ${signals.flowChecks.claim ? "present" : "missing"}`);
   lines.push(`- Read-back: ${signals.flowChecks.readBack ? "present" : "missing"}`);
   lines.push("");
   lines.push("## Risks");
@@ -508,6 +518,7 @@ function buildAgentResult(source, profile, signals, classification, fixPlan, rep
       execution: [
         ...signals.evidence.deployContract,
         ...signals.evidence.writeContract,
+        ...signals.evidence.claimRelease,
         ...signals.evidence.readContract,
         ...signals.evidence.waitReceipt,
       ].slice(0, 6),

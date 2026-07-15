@@ -13,7 +13,7 @@
 - The repo ships real GenLayer contract code, not just README claims.
 - The contract uses `gl.nondet.web.get(...)`, `gl.nondet.exec_prompt(...)`, and `gl.vm.run_nondet_unsafe(...)`.
 - The browser UI uses a real EIP-1193 wallet path, not localStorage wallet simulation.
-- The execution path covers deploy, submit, resolve, and read-back.
+- The execution path covers deploy, submit, resolve, claim-release, and read-back.
 - Policy output is bound into on-chain execution and stored resolution state.
 
 ## Rejection Defense

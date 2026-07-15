@@ -24,6 +24,7 @@ function main() {
     if (!signals.flowChecks.deploy) gaps.push("Missing deploy or import flow.");
     if (!signals.flowChecks.submit) gaps.push("Missing submit write flow.");
     if (!signals.flowChecks.resolve) gaps.push("Missing resolve or execution flow.");
+    if (!signals.flowChecks.claim) gaps.push("Missing claim-release or final payout flow.");
     if (!signals.flowChecks.readBack) gaps.push("Missing read-back or view flow.");
     if (!signals.workflowFiles.length) gaps.push("Missing clear app or agent workflow entrypoints.");
 
@@ -47,6 +48,7 @@ function main() {
     console.log(`Deploy: ${signals.flowChecks.deploy ? "present" : "missing"}`);
     console.log(`Submit: ${signals.flowChecks.submit ? "present" : "missing"}`);
     console.log(`Resolve: ${signals.flowChecks.resolve ? "present" : "missing"}`);
+    console.log(`Claim: ${signals.flowChecks.claim ? "present" : "missing"}`);
     console.log(`Read-back: ${signals.flowChecks.readBack ? "present" : "missing"}`);
     console.log("");
     if (gaps.length) {

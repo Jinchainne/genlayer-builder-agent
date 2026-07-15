@@ -12,7 +12,7 @@ improving GenLayer repos.
 - `scan-nondeterminism.mjs`
   Focused scan for non-deterministic contract execution and observable outcomes.
 - `find-missing-flow.mjs`
-  Checks whether deploy, submit, resolve, and read-back flows exist.
+  Checks whether deploy, submit, resolve, claim-release, and read-back flows exist.
 - `generate-fix-plan.mjs`
   Produces a prioritized repair plan for submission readiness.
 - `create-submission-report.mjs`

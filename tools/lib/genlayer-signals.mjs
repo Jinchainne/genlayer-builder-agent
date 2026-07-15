@@ -44,6 +44,7 @@ export function collectSignals(repoPath) {
     writeContract: findMatches(repoPath, codeFiles, /writeContract\s*\(/g),
     deployContract: findMatches(repoPath, codeFiles, /deployContract\s*\(/g),
     waitReceipt: findMatches(repoPath, codeFiles, /waitForTransactionReceipt\s*\(|wait.*receipt/gi),
+    claimRelease: findMatches(repoPath, codeFiles, /claim_release|claimDisputeRelease|Claim Release/gi),
     walletConnect: findMatches(repoPath, codeFiles, /wallet|connect wallet|wallet connected/gi),
     genlayerMentions: findMatches(repoPath, codeFiles, /\bgenlayer\b|intelligent contract|validator/gi),
     statePersistence: findMatches(repoPath, codeFiles, /storage|result|verdict|resolved|accepted|state/gi),
@@ -92,6 +93,7 @@ export function collectSignals(repoPath) {
     deploy: evidence.deployContract.length > 0,
     submit: evidence.writeContract.length > 0 || evidence.caseSubmission.length > 0,
     resolve: evidence.resolution.length > 0 || evidence.nondetPrompt.length > 0 || evidence.nondetWeb.length > 0,
+    claim: evidence.claimRelease.length > 0,
     readBack: evidence.readContract.length > 0 || evidence.publicView.length > 0,
   };
 
@@ -204,6 +206,13 @@ export function buildFixPlan(signals, classification) {
       action: "Add a read-back view or contract read so the on-chain result is visible after execution.",
     });
   }
+  if (!flowChecks.claim) {
+    items.push({
+      priority: "P1",
+      area: "client",
+      action: "Add a claim-release flow or an explicit post-resolution payout path so reviewers can verify the final escrow outcome.",
+    });
+  }
   if (!checks.hasReviewerProof) {
     items.push({
       priority: "P1",
@@ -215,7 +224,7 @@ export function buildFixPlan(signals, classification) {
     items.push({
       priority: "P1",
       area: "docs",
-      action: "Rewrite the README to explain why the project belongs on GenLayer and show deploy -> submit -> resolve -> read-back verification.",
+      action: "Rewrite the README to explain why the project belongs on GenLayer and show deploy -> submit -> resolve -> claim -> read-back verification.",
     });
   }
   if (!signals.workflowFiles.length) {

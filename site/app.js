@@ -39,6 +39,7 @@ const flowMap = [
   ["Deploy", "deploy"],
   ["Submit", "submit"],
   ["Resolve", "resolve"],
+  ["Claim", "claim"],
   ["Read-back", "readBack"],
 ];
 

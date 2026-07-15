@@ -30,7 +30,13 @@ function scoreEngineering(signals) {
 
 function scoreFrontend(signals) {
   if (!signals.checks.hasExecutionPath) return 1;
-  if (signals.flowChecks.deploy && signals.flowChecks.submit && signals.flowChecks.resolve && signals.flowChecks.readBack) {
+  if (
+    signals.flowChecks.deploy &&
+    signals.flowChecks.submit &&
+    signals.flowChecks.resolve &&
+    signals.flowChecks.claim &&
+    signals.flowChecks.readBack
+  ) {
     return 4;
   }
   return 3;
@@ -52,7 +58,7 @@ function buildScorecard(repoPath) {
       genlayerFit: "Evidence-backed dispute adjudication is a strong GenLayer-native use case because validator-reviewed non-deterministic judgment changes who can release escrow.",
       contractQuality: "The contract uses `gl.nondet.web.get(...)`, `gl.nondet.exec_prompt(...)`, and `gl.vm.run_nondet_unsafe(...)`, with fail-closed logic instead of deterministic-only settlement.",
       engineering: "The repo now contains contract code, live client flow, reviewer docs, and machine-readable audit tooling rather than a thin mock or screenshot-only submission.",
-      frontendUx: "The live site includes wallet connect, deploy, submit, respond, resolve, and read-back flows, so the reviewer can verify the app-to-contract path directly.",
+      frontendUx: "The live site includes wallet connect, deploy, submit, respond, resolve, claim-release, and read-back flows, so the reviewer can verify the full app-to-contract lifecycle directly.",
     },
   };
 

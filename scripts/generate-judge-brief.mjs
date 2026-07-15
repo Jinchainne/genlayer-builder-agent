@@ -51,6 +51,7 @@ function buildEvidenceManifest(repoPath) {
       deployCalls: count(/deployContract\s*\(/g, `${client}\n${ui}`),
       writeCalls: count(/writeContract\s*\(/g, `${client}\n${ui}`),
       readCalls: count(/readContract\s*\(/g, `${client}\n${ui}`),
+      claimReleaseCalls: count(/claim_release|claimDisputeRelease/g, `${client}\n${ui}`),
     },
     proofPaths: {
       contract: "contracts/genlayer_builder_dispute_agent.py",
@@ -84,7 +85,7 @@ function buildJudgeBrief(repoPath) {
   lines.push("- The repo ships real GenLayer contract code, not just README claims.");
   lines.push("- The contract uses `gl.nondet.web.get(...)`, `gl.nondet.exec_prompt(...)`, and `gl.vm.run_nondet_unsafe(...)`.");
   lines.push("- The browser UI uses a real EIP-1193 wallet path, not localStorage wallet simulation.");
-  lines.push("- The execution path covers deploy, submit, resolve, and read-back.");
+  lines.push("- The execution path covers deploy, submit, resolve, claim-release, and read-back.");
   lines.push("- Policy output is bound into on-chain execution and stored resolution state.");
   lines.push("");
   lines.push("## Rejection Defense");
