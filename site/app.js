@@ -136,7 +136,8 @@ function renderEvidence(target, items) {
     target,
     items,
     "No matching signal found.",
-    (item) => `<code>${escapeHtml(`${item.file}:${item.line}`)}</code> -> ${escapeHtml(item.snippet)}`
+    (item) =>
+      `<div class="evidence-entry"><code class="evidence-path">${escapeHtml(`${item.file}:${item.line}`)}</code><span class="evidence-snippet">${escapeHtml(item.snippet)}</span></div>`
   );
 }
 

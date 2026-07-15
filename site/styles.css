@@ -772,6 +772,31 @@ textarea:focus {
   line-height: 1.74;
 }
 
+.evidence-list li {
+  min-width: 0;
+}
+
+.evidence-entry {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.evidence-path,
+.evidence-snippet {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.evidence-path {
+  color: #b9c8e8;
+}
+
+.evidence-snippet {
+  color: var(--muted);
+}
+
 .evidence-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 18px;
