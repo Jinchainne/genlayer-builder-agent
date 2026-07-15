@@ -82,6 +82,25 @@ npm run plan
 npm run report
 ```
 
+## Judge Quick Verify
+
+If a reviewer has only a few minutes, these are the shortest paths:
+
+```bash
+node tools/judge-genlayer-builder.mjs .
+node --test tests/submission-proof.test.mjs
+node scripts/generate-review-scorecard.mjs .
+node scripts/generate-judge-brief.mjs .
+```
+
+High-signal proof paths:
+
+- `contracts/genlayer_builder_dispute_agent.py`
+- `src/genlayer-live-agent.ts`
+- `site/live-dapp.js`
+- `submission-pack/JUDGE-BRIEF.md`
+- `submission-pack/EVIDENCE-MANIFEST.json`
+
 ## Output
 
 The suite is designed to answer:

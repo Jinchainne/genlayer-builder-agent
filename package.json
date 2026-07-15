@@ -18,6 +18,7 @@
     "nondet": "node ./tools/scan-nondeterminism.mjs .",
     "flow": "node ./tools/find-missing-flow.mjs .",
     "plan": "node ./tools/generate-fix-plan.mjs .",
-    "report": "node ./tools/create-submission-report.mjs ."
+    "report": "node ./tools/create-submission-report.mjs .",
+    "judge-brief": "node ./scripts/generate-judge-brief.mjs ."
   }
 }

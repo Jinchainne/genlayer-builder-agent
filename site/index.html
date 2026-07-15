@@ -188,6 +188,58 @@ output:
         </article>
       </section>
 
+      <section class="grid-section judge-section">
+        <article class="panel reveal">
+          <p class="section-label">Judge Criteria Matrix</p>
+          <h2>Built around the actual scoring categories</h2>
+          <div class="criteria-grid">
+            <div class="criteria-card">
+              <span class="mini-label">GenLayer Fit</span>
+              <strong>Strong</strong>
+              <p>Validator-reviewed dispute adjudication changes the escrow outcome and loses meaning if GenLayer is removed.</p>
+            </div>
+            <div class="criteria-card">
+              <span class="mini-label">Contract Quality</span>
+              <strong>Concrete</strong>
+              <p>Real non-deterministic evidence fetch, prompt judgment, validator comparison, and fail-closed execution.</p>
+            </div>
+            <div class="criteria-card">
+              <span class="mini-label">Engineering</span>
+              <strong>Verifiable</strong>
+              <p>Code, tests, scripts, repo judge, scorecard generator, and judge brief all ship inside the repository.</p>
+            </div>
+            <div class="criteria-card">
+              <span class="mini-label">Frontend / UX</span>
+              <strong>Live</strong>
+              <p>The site includes real wallet, deploy, submit, resolve, and read-back actions instead of static instructions.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel reveal">
+          <p class="section-label">Rejection Defense</p>
+          <h2>Answers the most common fail reasons directly</h2>
+          <div class="defense-grid">
+            <div class="defense-card">
+              <strong>No fake wallet</strong>
+              <p>The live dapp uses `window.ethereum`, not localStorage simulation.</p>
+            </div>
+            <div class="defense-card">
+              <strong>No deterministic-only contract</strong>
+              <p>The contract uses `web.get`, `exec_prompt`, and validator-reviewed non-deterministic execution.</p>
+            </div>
+            <div class="defense-card">
+              <strong>No static app-to-contract story</strong>
+              <p>The repository ships deploy, write, resolve, and read-back code in both client and browser UI layers.</p>
+            </div>
+            <div class="defense-card">
+              <strong>No silent fallback</strong>
+              <p>Errors are typed, inconclusive outcomes do not auto-release, and the policy result is bound into execution.</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
       <main>
         <section class="panel reveal" id="agent-console">
           <div class="console-top">
@@ -461,6 +513,15 @@ output:
             <span class="helper-text" id="copy-feedback">No report copied yet.</span>
           </div>
           <pre class="markdown-output"><code id="markdown-output">Run the agent to generate a live Markdown report.</code></pre>
+        </section>
+
+        <section class="panel reveal">
+          <p class="section-label">Judge Commands</p>
+          <h2>Quick verification without guessing</h2>
+          <pre class="markdown-output"><code>node tools/judge-genlayer-builder.mjs .
+node --test tests/submission-proof.test.mjs
+node scripts/generate-review-scorecard.mjs .
+node scripts/generate-judge-brief.mjs .</code></pre>
         </section>
 
         <section class="grid-section showcase-section">

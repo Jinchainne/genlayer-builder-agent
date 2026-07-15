@@ -39,3 +39,5 @@ Use this list to verify the repo quickly without guessing.
   `site/live-dapp.js`
 - Repo judge:
   `tools/judge-genlayer-builder.mjs`
+- Judge brief:
+  `submission-pack/JUDGE-BRIEF.md`

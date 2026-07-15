@@ -25,3 +25,17 @@ test("live UI includes wallet connect and on-chain interaction actions", () => {
   assert.match(liveUi, /resolve_case/);
   assert.match(liveUi, /get_case_json/);
 });
+
+test("frontend uses a real wallet path and avoids fake localStorage wallet simulation", () => {
+  assert.doesNotMatch(liveUi, /localStorage/i);
+  assert.match(liveUi, /window\.ethereum/);
+});
+
+test("contract defends against the main rejection patterns", () => {
+  assert.match(contract, /Only the named respondent can answer/);
+  assert.match(contract, /Only the winning party can claim release/);
+  assert.match(contract, /Evidence URL must use https/);
+  assert.match(contract, /Private or local evidence URLs are not allowed/);
+  assert.doesNotMatch(contract, /50\/50|fallback/i);
+  assert.match(contract, /policy_bound_to_execution/);
+});

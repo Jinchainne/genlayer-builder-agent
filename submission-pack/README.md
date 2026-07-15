@@ -15,6 +15,7 @@ signals to a more reviewer-ready state.
 - focused commands for judging, non-determinism scanning, flow inspection, fix
   planning, and report generation
 - JSON and Markdown outputs that can feed a larger delivery pipeline
+- explicit judge-facing proof files for quick verification
 
 ## What would make the project stronger
 
@@ -34,3 +35,9 @@ signals to a more reviewer-ready state.
 
 The `site/` folder contains a static showcase page that can be deployed to
 Vercel for a quick live demo.
+
+## Judge-first files
+
+- `submission-pack/JUDGE-BRIEF.md`
+- `submission-pack/EVIDENCE-MANIFEST.json`
+- `submission-pack/REJECTION-DEFENSE.md`

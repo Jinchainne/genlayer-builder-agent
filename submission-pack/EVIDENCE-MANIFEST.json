@@ -1,0 +1,33 @@
+{
+  "project": "GenLayer Builder Agent",
+  "gateChecks": {
+    "contractInRepo": true,
+    "meaningfulNondeterminism": true,
+    "realAppToContractPath": true,
+    "realWalletUi": true
+  },
+  "rejectionDefense": {
+    "noFakeWallet": true,
+    "leaderValidatorSubstanceCheck": true,
+    "accessControlOnResponse": true,
+    "accessControlOnRelease": true,
+    "noSilentFallback": true,
+    "evidenceUrlSanitization": true
+  },
+  "counts": {
+    "nondetPromptCalls": 1,
+    "nondetWebCalls": 1,
+    "nondetConsensusCalls": 1,
+    "deployCalls": 3,
+    "writeCalls": 8,
+    "readCalls": 2
+  },
+  "proofPaths": {
+    "contract": "contracts/genlayer_builder_dispute_agent.py",
+    "client": "src/genlayer-live-agent.ts",
+    "liveUi": "site/live-dapp.js",
+    "liveSite": "https://genlayer-builder-agent.vercel.app",
+    "scorecard": "submission-pack/SCORECARD.md",
+    "checklist": "submission-pack/REVIEWER-CHECKLIST.md"
+  }
+}

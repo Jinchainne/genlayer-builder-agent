@@ -86,7 +86,9 @@ body::after {
 .dna-grid,
 .mode-grid,
 .pipeline-grid,
-.showcase-grid {
+.showcase-grid,
+.criteria-grid,
+.defense-grid {
   display: grid;
   gap: 20px;
 }
@@ -424,7 +426,9 @@ pre {
 }
 
 .dna-grid,
-.showcase-grid {
+.showcase-grid,
+.criteria-grid,
+.defense-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: 18px;
 }
@@ -442,7 +446,9 @@ pre {
 .dna-card,
 .mode-card,
 .pipeline-card,
-.showcase-card {
+.showcase-card,
+.criteria-card,
+.defense-card {
   position: relative;
   padding: 20px;
   border-radius: 22px;
@@ -454,7 +460,9 @@ pre {
 .dna-card:hover,
 .mode-card:hover,
 .pipeline-card:hover,
-.showcase-card:hover {
+.showcase-card:hover,
+.criteria-card:hover,
+.defense-card:hover {
   transform: translateY(-3px);
 }
 
@@ -473,7 +481,9 @@ pre {
 .dna-card strong,
 .mode-card strong,
 .pipeline-card strong,
-.showcase-card strong {
+.showcase-card strong,
+.criteria-card strong,
+.defense-card strong {
   font-size: 1.2rem;
   margin: 8px 0 10px;
 }
@@ -829,7 +839,9 @@ textarea:focus {
   .dna-grid,
   .mode-grid,
   .pipeline-grid,
-  .showcase-grid {
+  .showcase-grid,
+  .criteria-grid,
+  .defense-grid {
     grid-template-columns: 1fr;
   }
 
