@@ -264,6 +264,18 @@ select {
   color: var(--ink);
 }
 
+textarea {
+  width: 100%;
+  min-height: 120px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 14px;
+  color: var(--ink);
+  font-family: "IBM Plex Mono", monospace;
+  resize: vertical;
+}
+
 .submit-button {
   width: 100%;
 }
@@ -282,6 +294,36 @@ select {
   border-radius: 18px;
   border: 1px dashed rgba(15, 108, 105, 0.28);
   background: rgba(255, 255, 255, 0.5);
+}
+
+.wallet-row {
+  display: grid;
+  grid-template-columns: 180px 180px minmax(0, 1fr);
+  gap: 16px;
+  align-items: end;
+}
+
+.contract-field {
+  min-width: 0;
+}
+
+.compact-grid {
+  margin-top: 4px;
+}
+
+.inner-panel {
+  margin-top: 0;
+}
+
+.dapp-form {
+  display: grid;
+  gap: 14px;
+}
+
+.button-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .metrics {
@@ -402,7 +444,8 @@ select {
   .check-grid,
   .flow-grid,
   .evidence-grid,
-  .metrics {
+  .metrics,
+  .wallet-row {
     grid-template-columns: 1fr;
   }
 

@@ -19,6 +19,23 @@ The package is designed to feel like a real operator tool: one entrypoint,
 clear profiles, narrow diagnostics, and outputs that can be reused in a build
 or review pipeline.
 
+## Why This Belongs On GenLayer
+
+The strongest GenLayer use cases are workflows where validator-reviewed
+non-deterministic judgment changes an on-chain outcome. This package now ships
+with a companion dispute-resolution contract and client flow that demonstrate
+that exact pattern:
+
+- evidence-backed dispute adjudication
+- `gl.nondet.web.get(...)` evidence fetches
+- `gl.nondet.exec_prompt(...)` structured judgment
+- `gl.vm.run_nondet_unsafe(...)` validator comparison
+- deploy -> submit -> resolve -> read-back execution flow
+
+That means the repository is no longer just describing adjudication in prose.
+It now contains a concrete GenLayer-native path where consensus, evidence,
+resolve logic, and execution binding all matter to the final state transition.
+
 ## Why this looks like a real agent project
 
 This package follows patterns used by strong open-source agent systems:

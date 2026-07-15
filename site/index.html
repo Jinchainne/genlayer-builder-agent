@@ -113,6 +113,75 @@ output:
           </div>
         </section>
 
+        <section class="panel live-panel" id="live-genlayer-dapp">
+          <div class="console-top">
+            <div>
+              <p class="section-label">Live GenLayer Dapp</p>
+              <h2>Deploy and use the dispute agent on Studionet</h2>
+              <p class="helper-text">
+                This flow is built to answer the rejection screenshots directly:
+                real wallet connect, real contract deploy, real write calls,
+                nondeterministic resolution, and on-chain read-back.
+              </p>
+            </div>
+            <div class="live-badge">Studionet</div>
+          </div>
+
+          <div class="wallet-row">
+            <button class="button primary" id="connect-wallet" type="button">Connect Wallet</button>
+            <button class="button secondary" id="deploy-contract" type="button">Deploy Contract</button>
+            <label class="field contract-field">
+              <span>Contract Address</span>
+              <input id="contract-address" type="text" placeholder="0x..." />
+            </label>
+          </div>
+
+          <div class="agent-status" id="wallet-status">
+            Wallet not connected yet.
+          </div>
+
+          <div class="two-column compact-grid">
+            <article class="panel inner-panel">
+              <p class="section-label">Open Dispute</p>
+              <div class="dapp-form">
+                <label class="field"><span>Case ID</span><input id="open-case-id" type="text" placeholder="case-001" /></label>
+                <label class="field"><span>Title</span><input id="open-title" type="text" placeholder="Milestone delivery dispute" /></label>
+                <label class="field"><span>Claim Text</span><textarea id="open-claim-text" placeholder="Explain what happened and what should be released."></textarea></label>
+                <label class="field"><span>Respondent Address</span><input id="open-respondent-address" type="text" placeholder="0x..." /></label>
+                <label class="field"><span>Claimant Evidence URL</span><input id="open-evidence-url" type="url" placeholder="https://..." /></label>
+                <label class="field"><span>Escrow Stake (GEN)</span><input id="open-stake-gen" type="text" value="0.01" /></label>
+                <button class="button primary" id="open-case-button" type="button">Open Case</button>
+              </div>
+            </article>
+
+            <article class="panel inner-panel">
+              <p class="section-label">Respond And Resolve</p>
+              <div class="dapp-form">
+                <label class="field"><span>Case ID</span><input id="response-case-id" type="text" placeholder="case-001" /></label>
+                <label class="field"><span>Response Text</span><textarea id="response-text" placeholder="Respond with your side of the dispute."></textarea></label>
+                <label class="field"><span>Respondent Evidence URL</span><input id="response-evidence-url" type="url" placeholder="https://..." /></label>
+                <label class="field"><span>Matching Stake (GEN)</span><input id="response-stake-gen" type="text" value="0.01" /></label>
+                <div class="button-stack">
+                  <button class="button secondary" id="submit-response-button" type="button">Submit Response</button>
+                  <button class="button primary" id="resolve-case-button" type="button">Resolve Case</button>
+                  <button class="button secondary" id="read-case-button" type="button">Read Case</button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="two-column compact-grid">
+            <article class="panel inner-panel">
+              <p class="section-label">Live Case JSON</p>
+              <pre class="markdown-output"><code id="case-json-output">No case loaded yet.</code></pre>
+            </article>
+            <article class="panel inner-panel">
+              <p class="section-label">Transaction Log</p>
+              <pre class="markdown-output"><code id="tx-log-output">No live GenLayer transaction has been sent yet.</code></pre>
+            </article>
+          </div>
+        </section>
+
         <section class="grid-section">
           <article class="panel summary-panel">
             <p class="section-label">Summary</p>
@@ -232,5 +301,6 @@ output:
     </div>
 
     <script src="./app.js"></script>
+    <script type="module" src="./live-dapp.js"></script>
   </body>
 </html>

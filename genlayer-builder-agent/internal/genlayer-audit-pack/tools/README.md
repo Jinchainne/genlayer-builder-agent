@@ -5,6 +5,10 @@ This is a local-only helper for fast pass/fail review against:
 - the GenLayer builder-project standard in this skill
 - the two rejection patterns from the screenshots
 
+A strong GenLayer fit here means validator-reviewed non-deterministic
+adjudication over evidence, ambiguity, or external information, with the
+resolve result bound to real execution and visible state transition.
+
 ## Usage
 
 From the workspace root:

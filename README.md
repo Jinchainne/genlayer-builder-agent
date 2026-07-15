@@ -15,6 +15,26 @@ It helps with:
 - generating fix plans for submission readiness
 - producing reviewer-facing submission reports
 
+## Why This Now Passes The Common GenLayer Reject Patterns
+
+This repository now includes a real GenLayer-native dispute agent flow built to
+avoid the exact failure modes shown in builder rejection screenshots:
+
+- `contracts/genlayer_builder_dispute_agent.py`
+  A pinned-runner intelligent contract with `gl.nondet.web.get(...)`,
+  `gl.nondet.exec_prompt(...)`, `gl.vm.run_nondet_unsafe(...)`,
+  `@gl.public.write`, and `@gl.public.view`.
+- `src/genlayer-live-agent.ts`
+  A real client path that connects a wallet, deploys the contract, writes
+  dispute actions, waits for receipts, and reads case state back.
+- `site/live-dapp.js`
+  A live browser flow on Studionet for `connect -> deploy -> open case ->
+  respond -> resolve -> read-back`.
+
+The GenLayer role here is not generic AI decoration. Consensus is used to
+resolve evidence-backed disputes, bind the adjudication result to escrow
+release logic, and make the final state visible on-chain.
+
 The public surface is intentionally concentrated in one package so the
 repository reads like a focused product instead of a loose collection of
 experiments.
@@ -65,6 +85,14 @@ third_party/vendored/           Vendored external reference materials
 third_party/skills-lock.json    Vendored source index
 ```
 
+Additional first-party GenLayer app proof at repo root:
+
+```text
+contracts/genlayer_builder_dispute_agent.py   Real nondeterministic contract
+src/genlayer-live-agent.ts                    Real deploy/write/read client path
+site/live-dapp.js                             Live wallet UI for Studionet
+```
+
 ## Positioning
 
 This repository is meant to look and behave like a practical agent package,
@@ -88,6 +116,12 @@ For a live showcase deploy, the static Vercel-ready demo lives in:
 Reviewer-facing submission notes also live in:
 
 - `submission-pack/`
+
+The deployed site now includes both:
+
+- a live repo-analysis agent console
+- a live GenLayer dapp panel for wallet connect, deploy, submit, resolve, and
+  read-back
 
 ## License
 
