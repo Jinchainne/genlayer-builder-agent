@@ -123,6 +123,20 @@ The deployed site now includes both:
 - a live GenLayer dapp panel for wallet connect, deploy, submit, resolve, and
   read-back
 
+Key reviewer artifacts:
+
+- `submission-pack/SCORECARD.md`
+- `submission-pack/REVIEWER-CHECKLIST.md`
+- `submission-pack/FEEDBACK-NOTES.md`
+- `submission-pack/RESUBMISSION-CHECKLIST.md`
+
+Proof automation:
+
+```bash
+node --test tests/submission-proof.test.mjs
+node scripts/generate-review-scorecard.mjs .
+```
+
 ## License
 
 MIT for first-party files in this repository. Vendored third-party materials
