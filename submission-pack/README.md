@@ -10,7 +10,7 @@ signals to a more reviewer-ready state.
 
 ## What the package already proves
 
-- a clean public package surface under `genlayer-builder-agent/`
+- a clean public repo surface with the main tool suite at the root
 - multiple operating profiles for different review modes
 - focused commands for judging, non-determinism scanning, flow inspection, fix
   planning, and report generation

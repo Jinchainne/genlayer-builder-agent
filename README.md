@@ -1,143 +1,115 @@
 # GenLayer Builder Agent
 
-GenLayer Builder Agent is a local-first review and builder package for
-GenLayer projects that need to look credible to technical reviewers.
+GenLayer Builder Agent is a local-first agent package for reviewing,
+diagnosing, and improving GenLayer repos before submission.
 
-It is designed for projects where non-deterministic intelligent-contract
-execution, real app-to-contract flow, and reviewer-proof submission quality all
-matter to whether a build is credible.
+It is specifically aimed at GenLayer projects where meaningful non-deterministic
+execution, real deploy-submit-resolve-read-back flow, and reviewer-visible
+proof determine whether the repo looks submission-ready.
 
-It helps with:
+It is built around a practical workflow:
 
-- checking whether a repo is a real GenLayer fit
-- detecting weak or missing non-deterministic execution
-- finding missing deploy, submit, resolve, and read-back flows
-- generating fix plans for submission readiness
-- producing reviewer-facing submission reports
+1. judge the repo
+2. inspect non-determinism
+3. find missing app-to-contract flow
+4. generate a fix plan
+5. produce a reviewer-facing report
 
-## Why This Now Passes The Common GenLayer Reject Patterns
+The package is designed to feel like a real operator tool: one entrypoint,
+clear profiles, narrow diagnostics, and outputs that can be reused in a build
+or review pipeline.
 
-This repository now includes a real GenLayer-native dispute agent flow built to
-avoid the exact failure modes shown in builder rejection screenshots:
+## Why This Belongs On GenLayer
 
-- `contracts/genlayer_builder_dispute_agent.py`
-  A pinned-runner intelligent contract with `gl.nondet.web.get(...)`,
-  `gl.nondet.exec_prompt(...)`, `gl.vm.run_nondet_unsafe(...)`,
-  `@gl.public.write`, and `@gl.public.view`.
-- `src/genlayer-live-agent.ts`
-  A real client path that connects a wallet, deploys the contract, writes
-  dispute actions, waits for receipts, and reads case state back.
-- `site/live-dapp.js`
-  A live browser flow on Studionet for `connect -> deploy -> open case ->
-  respond -> resolve -> read-back`.
+The strongest GenLayer use cases are workflows where validator-reviewed
+non-deterministic judgment changes an on-chain outcome. This package now ships
+with a companion dispute-resolution contract and client flow that demonstrate
+that exact pattern:
 
-The GenLayer role here is not generic AI decoration. Consensus is used to
-resolve evidence-backed disputes, bind the adjudication result to escrow
-release logic, and make the final state visible on-chain.
+- evidence-backed dispute adjudication
+- `gl.nondet.web.get(...)` evidence fetches
+- `gl.nondet.exec_prompt(...)` structured judgment
+- `gl.vm.run_nondet_unsafe(...)` validator comparison
+- deploy -> submit -> resolve -> read-back execution flow
 
-The public surface is intentionally concentrated in one package so the
-repository reads like a focused product instead of a loose collection of
-experiments.
+That means the repository is no longer just describing adjudication in prose.
+It now contains a concrete GenLayer-native path where consensus, evidence,
+resolve logic, and execution binding all matter to the final state transition.
 
-## Main package
+## Why this looks like a real agent project
 
-The main agent package lives in:
+This project follows patterns used by strong open-source agent systems:
 
-- [genlayer-builder-agent/](genlayer-builder-agent/)
+- one main entrypoint with multiple operating profiles
+- specialized tools for narrow sub-tasks
+- local-first execution against a real workspace
+- machine-readable JSON outputs
+- explicit operator guidance through `AGENTS.md`
+- a clean public repo surface with direct access to the core tools
 
-That folder contains:
-
-- the agent entrypoint
-- review profiles
-- focused audit tools
-- report schemas
-- workflow guidance
-
-## Quick start
+## Main entrypoint
 
 ```bash
-node genlayer-builder-agent/tools/run-genlayer-builder-agent.mjs <repo> --profile coach
+node tools/run-genlayer-builder-agent.mjs <repo> --profile coach
 ```
 
-Useful focused commands:
+Profiles:
+
+- `judge`
+- `coach`
+- `submission`
+
+## Tool suite
 
 ```bash
-node genlayer-builder-agent/tools/judge-genlayer-builder.mjs <repo>
-node genlayer-builder-agent/tools/scan-nondeterminism.mjs <repo>
-node genlayer-builder-agent/tools/find-missing-flow.mjs <repo>
-node genlayer-builder-agent/tools/generate-fix-plan.mjs <repo>
-node genlayer-builder-agent/tools/create-submission-report.mjs <repo>
+node tools/judge-genlayer-builder.mjs <repo>
+node tools/scan-nondeterminism.mjs <repo>
+node tools/find-missing-flow.mjs <repo>
+node tools/generate-fix-plan.mjs <repo>
+node tools/create-submission-report.mjs <repo>
 ```
 
 Append `--json` for machine-readable output.
 
-## Repo layout
-
-```text
-genlayer-builder-agent/     Main builder-agent package
-```
-
-Inside `genlayer-builder-agent/`:
-
-```text
-internal/genlayer-audit-pack/   Deep GenLayer review references and helper tool
-third_party/vendored/           Vendored external reference materials
-third_party/skills-lock.json    Vendored source index
-```
-
-Additional first-party GenLayer app proof at repo root:
-
-```text
-contracts/genlayer_builder_dispute_agent.py   Real nondeterministic contract
-src/genlayer-live-agent.ts                    Real deploy/write/read client path
-site/live-dapp.js                             Live wallet UI for Studionet
-```
-
-## Positioning
-
-This repository is meant to look and behave like a practical agent package,
-not a thin demo script. The design emphasizes:
-
-- one main agent entrypoint
-- multiple operating profiles
-- specialized audit tools
-- local-first execution
-- machine-readable outputs
-
-Supporting research and legacy audit references are kept inside
-`genlayer-builder-agent/internal/` so the outward-facing package remains clean.
-
-## Demo Site
-
-For a live showcase deploy, the static Vercel-ready demo lives in:
-
-- `site/`
-
-Reviewer-facing submission notes also live in:
-
-- `submission-pack/`
-
-The deployed site now includes both:
-
-- a live repo-analysis agent console
-- a live GenLayer dapp panel for wallet connect, deploy, submit, resolve, and
-  read-back
-
-Key reviewer artifacts:
-
-- `submission-pack/SCORECARD.md`
-- `submission-pack/REVIEWER-CHECKLIST.md`
-- `submission-pack/FEEDBACK-NOTES.md`
-- `submission-pack/RESUBMISSION-CHECKLIST.md`
-
-Proof automation:
+## Scripts
 
 ```bash
-node --test tests/submission-proof.test.mjs
-node scripts/generate-review-scorecard.mjs .
+npm run agent
+npm run judge
+npm run nondet
+npm run flow
+npm run plan
+npm run report
 ```
 
-## License
+## Output
 
-MIT for first-party files in this repository. Vendored third-party materials
-retain their upstream licenses.
+The suite is designed to answer:
+
+- is this a real GenLayer project?
+- does the contract do meaningful non-deterministic work?
+- is there a real deploy, submit, resolve, and read-back path?
+- what is missing for submission readiness?
+
+## Repo structure
+
+- `tools/`
+  executable commands
+- `tools/lib/`
+  shared repo-analysis logic
+- `profiles/`
+  agent operating modes
+- `schemas/`
+  machine-readable output contracts
+- `workflows/`
+  recommended sequencing
+- `references/`
+  review guidance
+- `contracts/`
+  live GenLayer dispute agent contract
+- `src/`
+  real client integration path
+- `site/`
+  Vercel-deployed live demo and agent console
+- `submission-pack/`
+  reviewer-facing submission materials

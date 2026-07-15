@@ -2,7 +2,7 @@
 
 import fs from "fs";
 import path from "path";
-import { collectSignals, classifySignals } from "../genlayer-builder-agent/tools/lib/genlayer-signals.mjs";
+import { collectSignals, classifySignals } from "../tools/lib/genlayer-signals.mjs";
 
 function scoreGenLayerFit(signals) {
   if (!signals.checks.hasMeaningfulNondet) return 1;

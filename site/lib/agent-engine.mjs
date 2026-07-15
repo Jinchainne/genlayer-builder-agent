@@ -226,15 +226,13 @@ function collectSignalsFromFiles(files) {
       file.path.startsWith("vendored/") ||
       file.path.startsWith("third_party/vendored/") ||
       file.path.includes("/third_party/vendored/");
-    const isThisPackage = file.path.startsWith("genlayer-builder-agent/");
     const isJudgeHelper = /(^|\/)tools\/(judge|scan|find|generate|create)-.*\.(mjs|js|ts)$/i.test(file.path);
     const isInternalLib = /(^|\/)tools\/lib\/.+\.(mjs|js|ts)$/i.test(file.path);
-    const isInternalAuditPack = /(^|\/)internal\/genlayer-audit-pack\/.+/i.test(file.path);
     const isReferenceDoc =
       file.path.includes("/references/") ||
       /(^|\/)(readme|skill)\.md$/i.test(file.path) ||
       /\.md$/i.test(file.path);
-    return isCode && !isVendored && !isThisPackage && !isJudgeHelper && !isInternalLib && !isInternalAuditPack && !isReferenceDoc;
+    return isCode && !isVendored && !isJudgeHelper && !isInternalLib && !isReferenceDoc;
   });
 
   const readmeFile =

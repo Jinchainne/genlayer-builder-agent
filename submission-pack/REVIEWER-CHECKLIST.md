@@ -38,4 +38,4 @@ Use this list to verify the repo quickly without guessing.
 - Live app UI:
   `site/live-dapp.js`
 - Repo judge:
-  `genlayer-builder-agent/tools/judge-genlayer-builder.mjs`
+  `tools/judge-genlayer-builder.mjs`
