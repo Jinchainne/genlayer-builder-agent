@@ -199,7 +199,7 @@ body::after {
 }
 
 .hero-copy {
-  padding: 38px;
+  padding: 42px 42px 36px;
 }
 
 .hero-copy::before,
@@ -237,10 +237,11 @@ li {
 }
 
 h1 {
-  margin-bottom: 18px;
-  font-size: clamp(3.3rem, 7vw, 6rem);
-  line-height: 0.92;
-  max-width: 10ch;
+  margin-bottom: 14px;
+  font-size: clamp(2.9rem, 5.6vw, 4.9rem);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  max-width: 9.2ch;
 }
 
 h2 {
@@ -249,9 +250,10 @@ h2 {
 }
 
 .lede {
-  max-width: 60ch;
-  font-size: 1.05rem;
-  line-height: 1.75;
+  max-width: 46ch;
+  font-size: 1rem;
+  line-height: 1.68;
+  margin-bottom: 0;
 }
 
 .hero-actions,
@@ -268,7 +270,7 @@ h2 {
 }
 
 .hero-badges {
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .hero-badge,
@@ -279,11 +281,11 @@ h2 {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 9px 14px;
+  padding: 8px 13px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.05);
-  font-size: 0.84rem;
+  font-size: 0.79rem;
   font-weight: 700;
 }
 
@@ -588,6 +590,10 @@ textarea:focus {
   color: var(--text);
   border-color: rgba(150, 167, 199, 0.2);
   background: rgba(255, 255, 255, 0.05);
+}
+
+.hero-actions {
+  margin: 22px 0 0;
 }
 
 .submit-button {
@@ -895,6 +901,6 @@ textarea:focus {
 
   h1 {
     max-width: 100%;
-    font-size: clamp(2.6rem, 16vw, 4rem);
+    font-size: clamp(2.35rem, 12vw, 3.7rem);
   }
 }
