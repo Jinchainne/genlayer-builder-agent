@@ -137,6 +137,57 @@ output:
         </p>
       </section>
 
+      <section class="grid-section design-section">
+        <article class="panel reveal">
+          <p class="section-label">Design DNA</p>
+          <h2>A real visual system for a GenLayer operator tool</h2>
+          <div class="dna-grid">
+            <div class="dna-card">
+              <span class="mini-label">Pattern</span>
+              <strong>Command Center</strong>
+              <p>Dense operator layout with premium depth and reviewer-facing clarity.</p>
+            </div>
+            <div class="dna-card">
+              <span class="mini-label">Style</span>
+              <strong>Futurist Glass</strong>
+              <p>Cold glow, layered transparency, sharp contrast, and signal-led emphasis.</p>
+            </div>
+            <div class="dna-card">
+              <span class="mini-label">Motion</span>
+              <strong>Measured</strong>
+              <p>Reveal transitions, live pulses, and controlled state changes instead of noisy animation.</p>
+            </div>
+            <div class="dna-card">
+              <span class="mini-label">Anti-pattern</span>
+              <strong>No fake AI fluff</strong>
+              <p>No purple-on-white generic SaaS look and no decorative dashboards with empty meaning.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel reveal">
+          <p class="section-label">Mode System</p>
+          <h2>The agent changes posture by review mode</h2>
+          <div class="mode-grid" id="mode-grid">
+            <article class="mode-card is-active" data-mode-card="coach">
+              <span class="mini-label">Coach</span>
+              <strong>Make the repo stronger</strong>
+              <p>Highlights missing proof, weak execution paths, and the shortest path to readiness.</p>
+            </article>
+            <article class="mode-card" data-mode-card="judge">
+              <span class="mini-label">Judge</span>
+              <strong>Gate the submission</strong>
+              <p>Compresses the repo into direct evidence, risks, and a fast pass or fail judgment.</p>
+            </article>
+            <article class="mode-card" data-mode-card="submission">
+              <span class="mini-label">Submission</span>
+              <strong>Package the proof</strong>
+              <p>Turns the technical signals into reviewer-friendly artifacts and markdown output.</p>
+            </article>
+          </div>
+        </article>
+      </section>
+
       <main>
         <section class="panel reveal" id="agent-console">
           <div class="console-top">
@@ -194,6 +245,38 @@ output:
                 <strong>Agent ready</strong>
                 <div class="feed-meta">The live engine is idle and waiting for a repository URL.</div>
               </div>
+            </div>
+          </div>
+
+          <div class="pipeline-shell">
+            <div class="console-top pipeline-top">
+              <div>
+                <p class="section-label">Reasoning Pipeline</p>
+                <h2>How the agent thinks through a repo</h2>
+              </div>
+              <div class="live-badge">Live State</div>
+            </div>
+            <div class="pipeline-grid" id="pipeline-grid">
+              <article class="pipeline-card is-current" data-stage-card="fetch">
+                <span class="mini-label">01</span>
+                <strong>Fetch</strong>
+                <p>Load repository metadata and source files from GitHub.</p>
+              </article>
+              <article class="pipeline-card" data-stage-card="classify">
+                <span class="mini-label">02</span>
+                <strong>Classify</strong>
+                <p>Detect GenLayer fit, nondeterminism, and real execution signals.</p>
+              </article>
+              <article class="pipeline-card" data-stage-card="verify">
+                <span class="mini-label">03</span>
+                <strong>Verify</strong>
+                <p>Check observable outcomes, reviewer proof, and flow coverage.</p>
+              </article>
+              <article class="pipeline-card" data-stage-card="report">
+                <span class="mini-label">04</span>
+                <strong>Report</strong>
+                <p>Assemble risks, fixes, evidence, and submission markdown.</p>
+              </article>
             </div>
           </div>
         </section>
@@ -378,6 +461,41 @@ output:
             <span class="helper-text" id="copy-feedback">No report copied yet.</span>
           </div>
           <pre class="markdown-output"><code id="markdown-output">Run the agent to generate a live Markdown report.</code></pre>
+        </section>
+
+        <section class="grid-section showcase-section">
+          <article class="panel reveal">
+            <p class="section-label">Submission Readiness</p>
+            <h2>What this site now communicates better</h2>
+            <div class="showcase-grid">
+              <div class="showcase-card">
+                <span class="mini-label">Credibility</span>
+                <strong>Real-state UX</strong>
+                <p>Loading, analysis, verdict, wallet, and report states are all visibly differentiated.</p>
+              </div>
+              <div class="showcase-card">
+                <span class="mini-label">Narrative</span>
+                <strong>Agent reasoning story</strong>
+                <p>The platform now explains how the verdict was formed instead of only showing the result.</p>
+              </div>
+              <div class="showcase-card">
+                <span class="mini-label">Positioning</span>
+                <strong>Tool, not mockup</strong>
+                <p>The visual system matches the seriousness of the underlying GenLayer contract and audit engine.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel reveal">
+            <p class="section-label">Presentation Layer</p>
+            <h2>Built to feel stronger under judge scrutiny</h2>
+            <ul class="risk-list">
+              <li>Clear mode differentiation for `judge`, `coach`, and `submission`.</li>
+              <li>Pipeline framing that makes the analysis look like a deliberate process.</li>
+              <li>Visual hierarchy that pushes live evidence and outcomes above filler copy.</li>
+              <li>More premium motion and surfaces without sacrificing readability.</li>
+            </ul>
+          </article>
         </section>
       </main>
     </div>

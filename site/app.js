@@ -17,6 +17,8 @@ const markdownOutput = document.getElementById("markdown-output");
 const copyMarkdownButton = document.getElementById("copy-markdown");
 const copyFeedback = document.getElementById("copy-feedback");
 const activityFeed = document.getElementById("activity-feed");
+const modeGrid = document.getElementById("mode-grid");
+const pipelineGrid = document.getElementById("pipeline-grid");
 
 const checkGrid = document.getElementById("check-grid");
 const flowGrid = document.getElementById("flow-grid");
@@ -39,6 +41,8 @@ const flowMap = [
   ["Resolve", "resolve"],
   ["Read-back", "readBack"],
 ];
+
+const stageOrder = ["fetch", "classify", "verify", "report"];
 
 function nowLabel() {
   return new Date().toLocaleTimeString([], {
@@ -74,6 +78,22 @@ function pushActivity(title, detail) {
 
   while (activityFeed.children.length > 5) {
     activityFeed.removeChild(activityFeed.lastElementChild);
+  }
+}
+
+function setActiveMode(mode) {
+  if (!modeGrid) return;
+  for (const card of modeGrid.querySelectorAll("[data-mode-card]")) {
+    card.classList.toggle("is-active", card.getAttribute("data-mode-card") === mode);
+  }
+}
+
+function setPipelineStage(stage, completedStages = []) {
+  if (!pipelineGrid) return;
+  for (const card of pipelineGrid.querySelectorAll("[data-stage-card]")) {
+    const key = card.getAttribute("data-stage-card");
+    card.classList.toggle("is-current", key === stage);
+    card.classList.toggle("is-done", completedStages.includes(key));
   }
 }
 
@@ -147,6 +167,8 @@ function renderResult(result) {
 
   markdownOutput.textContent = result.markdown;
   lastMarkdown = result.markdown;
+  setActiveMode(result.profile);
+  setPipelineStage("report", ["fetch", "classify", "verify"]);
 
   setStatus(
     `Analysis complete for ${result.summary.source}. Verdict: ${result.summary.verdict}.`,
@@ -174,6 +196,8 @@ async function runAnalysis(event) {
   setStatus("Agent is fetching the repository and scanning live GenLayer signals...", "running");
   verdictPill.textContent = "running";
   verdictPill.className = "pill neutral";
+  setActiveMode(profile);
+  setPipelineStage("fetch");
 
   pushActivity("Fetch started", `Loading ${repo} with the ${profile} profile.`);
 
@@ -186,6 +210,7 @@ async function runAnalysis(event) {
       body: JSON.stringify({ repo, profile }),
     });
 
+    setPipelineStage("classify", ["fetch"]);
     pushActivity("Classification", "Repo fetched. The agent is scoring fit, execution, and proof signals.");
 
     const data = await response.json();
@@ -193,12 +218,14 @@ async function runAnalysis(event) {
       throw new Error(data.error || "Analysis failed.");
     }
 
+    setPipelineStage("verify", ["fetch", "classify"]);
     renderResult(data);
   } catch (error) {
     const message = error instanceof Error ? error.message : "Analysis failed.";
     setStatus(message, "error");
     verdictPill.textContent = "error";
     verdictPill.className = "pill fail";
+    setPipelineStage("fetch");
     pushActivity("Runtime error", message);
   } finally {
     runButton.disabled = false;
@@ -257,4 +284,6 @@ copyMarkdownButton.addEventListener("click", async () => {
   }
 });
 
+setActiveMode(profileInput.value);
+setPipelineStage("fetch");
 installRevealAnimations();

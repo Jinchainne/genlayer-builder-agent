@@ -82,7 +82,11 @@ body::after {
 .two-column,
 .wallet-row,
 .dapp-grid,
-.metrics {
+.metrics,
+.dna-grid,
+.mode-grid,
+.pipeline-grid,
+.showcase-grid {
   display: grid;
   gap: 20px;
 }
@@ -413,6 +417,75 @@ pre {
   background:
     linear-gradient(135deg, rgba(99, 230, 255, 0.12), rgba(109, 132, 255, 0.08)),
     rgba(255, 255, 255, 0.03);
+}
+
+.design-section {
+  margin-top: 20px;
+}
+
+.dna-grid,
+.showcase-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 18px;
+}
+
+.mode-grid,
+.pipeline-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 18px;
+}
+
+.pipeline-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.dna-card,
+.mode-card,
+.pipeline-card,
+.showcase-card {
+  position: relative;
+  padding: 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(150, 167, 199, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.dna-card:hover,
+.mode-card:hover,
+.pipeline-card:hover,
+.showcase-card:hover {
+  transform: translateY(-3px);
+}
+
+.mode-card.is-active,
+.pipeline-card.is-current {
+  border-color: rgba(99, 230, 255, 0.45);
+  background: linear-gradient(180deg, rgba(99, 230, 255, 0.12), rgba(255, 255, 255, 0.04));
+  box-shadow: inset 0 0 0 1px rgba(99, 230, 255, 0.08), 0 16px 40px rgba(29, 100, 170, 0.18);
+}
+
+.pipeline-card.is-done {
+  border-color: rgba(129, 247, 185, 0.32);
+  box-shadow: inset 0 0 0 1px rgba(129, 247, 185, 0.08);
+}
+
+.dna-card strong,
+.mode-card strong,
+.pipeline-card strong,
+.showcase-card strong {
+  font-size: 1.2rem;
+  margin: 8px 0 10px;
+}
+
+.pipeline-shell {
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(150, 167, 199, 0.12);
+}
+
+.pipeline-top {
+  margin-bottom: 0;
 }
 
 .console-top {
@@ -752,7 +825,11 @@ textarea:focus {
   .wallet-row,
   .stats-strip,
   .signal-grid,
-  .metrics {
+  .metrics,
+  .dna-grid,
+  .mode-grid,
+  .pipeline-grid,
+  .showcase-grid {
     grid-template-columns: 1fr;
   }
 
