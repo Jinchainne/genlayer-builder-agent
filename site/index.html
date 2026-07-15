@@ -6,7 +6,7 @@
     <title>GenLayer Builder Agent</title>
     <meta
       name="description"
-      content="Real GenLayer Builder Agent console for live GitHub repo analysis."
+      content="Live GenLayer Builder Agent console with real GitHub repo analysis and live Studionet dispute-agent flow."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,32 +18,97 @@
   </head>
   <body>
     <div class="page-shell">
-      <header class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Live agent console</p>
-          <h1>GenLayer Builder Agent</h1>
-          <p class="lede">
-            Analyze a public GitHub repository with the real GenLayer Builder
-            Agent engine. The console fetches the repo, scans for GenLayer
-            signals, scores workflow coverage, and returns a live submission
-            report.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="https://github.com/Jinchainne/genlayer-builder-agent">GitHub Repo</a>
-            <a class="button secondary" href="#agent-console">Open Console</a>
+      <header class="topbar reveal">
+        <div class="brand">
+          <div class="brand-mark"></div>
+          <div class="brand-copy">
+            <strong>GenLayer Builder Agent</strong>
+            <span>Real audit + live dispute workflow</span>
           </div>
         </div>
-        <div class="hero-panel">
-          <div class="status-card">
-            <span class="status-label">Runs live against GitHub</span>
-            <strong>No mock verdicts</strong>
-            <span>Real regex and repo traversal engine</span>
-            <span>Judge, coach, and submission profiles</span>
-            <span>JSON-backed live report rendering</span>
+        <nav class="topbar-nav">
+          <a href="#agent-console">Agent Console</a>
+          <a href="#live-genlayer-dapp">Live Dapp</a>
+          <a href="#submission-report">Report</a>
+        </nav>
+        <div class="topbar-status">
+          <span class="status-dot"></span>
+          <span>Production online</span>
+        </div>
+      </header>
+
+      <section class="hero">
+        <article class="hero-copy reveal">
+          <p class="eyebrow">GenLayer-native review system</p>
+          <h1>Build, audit, and prove a real GenLayer agent.</h1>
+          <p class="lede">
+            This is not a static landing page. It is a live operator surface for
+            repo diagnosis, reviewer-grade reporting, and on-chain dispute flow
+            execution on Studionet.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#agent-console">Run Live Agent</a>
+            <a class="button secondary" href="https://github.com/Jinchainne/genlayer-builder-agent">View GitHub</a>
           </div>
-          <div class="terminal-card">
+          <div class="hero-badges">
+            <span class="hero-badge"><strong>Real</strong> GitHub fetch + scoring</span>
+            <span class="hero-badge"><strong>Real</strong> wallet + contract actions</span>
+            <span class="hero-badge"><strong>Live</strong> Markdown submission output</span>
+          </div>
+        </article>
+
+        <div class="hero-panels">
+          <section class="hero-panel reveal">
+            <p class="section-label">Signal Layer</p>
+            <div class="signal-grid">
+              <article class="signal-card">
+                <span class="mini-label">Mode</span>
+                <strong>Judge</strong>
+                <span>Direct pass or fail gate for submissions.</span>
+              </article>
+              <article class="signal-card">
+                <span class="mini-label">Mode</span>
+                <strong>Coach</strong>
+                <span>Turns weak repos into credible GenLayer builds.</span>
+              </article>
+              <article class="signal-card">
+                <span class="mini-label">Mode</span>
+                <strong>Submission</strong>
+                <span>Outputs reviewer-facing evidence and report text.</span>
+              </article>
+            </div>
+          </section>
+
+          <section class="hero-panel reveal">
+            <p class="section-label">Execution Surface</p>
+            <div class="stats-strip">
+              <div class="stat-card">
+                <span class="mini-label">Repo scan</span>
+                <strong>Live</strong>
+                <span>Public GitHub fetch, parse, classify.</span>
+              </div>
+              <div class="stat-card">
+                <span class="mini-label">Contract flow</span>
+                <strong>Real</strong>
+                <span>Deploy, submit, resolve, read-back.</span>
+              </div>
+              <div class="stat-card">
+                <span class="mini-label">Output</span>
+                <strong>Proof</strong>
+                <span>Evidence lists, risks, and fix plans.</span>
+              </div>
+              <div class="stat-card">
+                <span class="mini-label">Audience</span>
+                <strong>Judges</strong>
+                <span>Built for fast reviewer verification.</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="terminal-card reveal">
             <div class="terminal-head">
               <span></span><span></span><span></span>
+              <div class="terminal-title">agent runtime / live endpoint</div>
             </div>
             <pre><code>POST /api/analyze
 
@@ -56,20 +121,32 @@ output:
 - checks
 - flow coverage
 - fix plan
+- reviewer notes
 - markdown report</code></pre>
-          </div>
+          </section>
         </div>
-      </header>
+      </section>
+
+      <section class="glass-banner reveal">
+        <p class="section-label">Why this looks stronger</p>
+        <h2>Designed like a product console, not a hackathon placeholder</h2>
+        <p class="helper-text">
+          The visual system now emphasizes depth, motion, live state, and
+          technical credibility so the project feels closer to a serious agent
+          platform than a plain form demo.
+        </p>
+      </section>
 
       <main>
-        <section class="panel console-panel" id="agent-console">
+        <section class="panel reveal" id="agent-console">
           <div class="console-top">
             <div>
               <p class="section-label">Agent Console</p>
-              <h2>Run a real repo analysis</h2>
+              <h2>Run a live repository verdict</h2>
               <p class="helper-text">
-                Live demo supports public GitHub repository URLs. Local path
-                analysis remains available through the CLI package.
+                Public GitHub repositories are fetched live. The engine scans
+                for GenLayer fit, non-determinism, app-to-contract flow, and
+                reviewer proof signals.
               </p>
             </div>
             <div class="live-badge">Live API</div>
@@ -104,24 +181,32 @@ output:
               Analyze this repo
             </button>
             <button class="preset-button" data-repo="https://github.com/genlayerlabs">
-              Paste your own public repo instead
+              Load a new public repo
             </button>
           </div>
 
-          <div class="agent-status" id="status-box">
-            Waiting for input.
+          <div class="agent-status" id="status-box">Waiting for input.</div>
+
+          <div class="activity-feed" id="activity-feed">
+            <div class="activity-item">
+              <div class="activity-dot"></div>
+              <div>
+                <strong>Agent ready</strong>
+                <div class="feed-meta">The live engine is idle and waiting for a repository URL.</div>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section class="panel live-panel" id="live-genlayer-dapp">
+        <section class="panel reveal" id="live-genlayer-dapp">
           <div class="console-top">
             <div>
               <p class="section-label">Live GenLayer Dapp</p>
-              <h2>Deploy and use the dispute agent on Studionet</h2>
+              <h2>Use the dispute agent on Studionet</h2>
               <p class="helper-text">
-                This flow is built to answer the rejection screenshots directly:
-                real wallet connect, real contract deploy, real write calls,
-                nondeterministic resolution, and on-chain read-back.
+                This flow exists to answer common rejection reasons directly:
+                real wallet connect, real deploy, real write calls, real
+                nondeterministic resolution, and visible state read-back.
               </p>
             </div>
             <div class="live-badge">Studionet</div>
@@ -136,12 +221,10 @@ output:
             </label>
           </div>
 
-          <div class="agent-status" id="wallet-status">
-            Wallet not connected yet.
-          </div>
+          <div class="agent-status" id="wallet-status">Wallet not connected yet.</div>
 
-          <div class="two-column compact-grid">
-            <article class="panel inner-panel">
+          <div class="dapp-grid">
+            <article class="panel">
               <p class="section-label">Open Dispute</p>
               <div class="dapp-form">
                 <label class="field"><span>Case ID</span><input id="open-case-id" type="text" placeholder="case-001" /></label>
@@ -154,7 +237,7 @@ output:
               </div>
             </article>
 
-            <article class="panel inner-panel">
+            <article class="panel">
               <p class="section-label">Respond And Resolve</p>
               <div class="dapp-form">
                 <label class="field"><span>Case ID</span><input id="response-case-id" type="text" placeholder="case-001" /></label>
@@ -170,12 +253,12 @@ output:
             </article>
           </div>
 
-          <div class="two-column compact-grid">
-            <article class="panel inner-panel">
+          <div class="two-column">
+            <article class="panel">
               <p class="section-label">Live Case JSON</p>
               <pre class="markdown-output"><code id="case-json-output">No case loaded yet.</code></pre>
             </article>
-            <article class="panel inner-panel">
+            <article class="panel">
               <p class="section-label">Transaction Log</p>
               <pre class="markdown-output"><code id="tx-log-output">No live GenLayer transaction has been sent yet.</code></pre>
             </article>
@@ -183,16 +266,15 @@ output:
         </section>
 
         <section class="grid-section">
-          <article class="panel summary-panel">
-            <p class="section-label">Summary</p>
-            <div class="report-head">
+          <article class="panel summary-panel reveal">
+            <div class="summary-kicker">
               <span class="pill neutral" id="verdict-pill">idle</span>
               <span class="mono" id="profile-pill">profile: coach</span>
             </div>
+            <p class="section-label">Summary</p>
             <h2 id="repo-title">No repository analyzed yet</h2>
             <p id="repo-description">
-              Run the agent to populate live verdict, score, and repository
-              metadata.
+              Run the live agent to populate verdict, metadata, and reviewer-facing guidance.
             </p>
             <div class="metrics result-metrics">
               <div>
@@ -210,7 +292,7 @@ output:
             </div>
           </article>
 
-          <article class="panel">
+          <article class="panel reveal">
             <p class="section-label">Checks</p>
             <h2>Core readiness signals</h2>
             <div class="check-grid" id="check-grid">
@@ -223,9 +305,9 @@ output:
         </section>
 
         <section class="two-column">
-          <article class="panel">
+          <article class="panel reveal">
             <p class="section-label">Flow Coverage</p>
-            <h2>Deploy to read-back map</h2>
+            <h2>Deploy to read-back lifecycle</h2>
             <div class="flow-grid" id="flow-grid">
               <div><strong>Deploy</strong><span>waiting</span></div>
               <div><strong>Submit</strong><span>waiting</span></div>
@@ -234,18 +316,18 @@ output:
             </div>
           </article>
 
-          <article class="panel">
+          <article class="panel reveal">
             <p class="section-label">Reviewer Notes</p>
-            <h2>What the agent would tell a reviewer</h2>
+            <h2>What the agent would say out loud</h2>
             <ul class="risk-list" id="reviewer-notes">
               <li>Waiting for analysis.</li>
             </ul>
           </article>
         </section>
 
-        <section class="panel">
+        <section class="panel reveal">
           <p class="section-label">Evidence</p>
-          <h2>Live code signals surfaced by the agent</h2>
+          <h2>Live code signals found by the engine</h2>
           <div class="evidence-grid">
             <article>
               <h3>Non-determinism</h3>
@@ -269,7 +351,7 @@ output:
         </section>
 
         <section class="two-column">
-          <article class="panel">
+          <article class="panel reveal">
             <p class="section-label">Risks</p>
             <h2>Current blockers</h2>
             <ul class="risk-list" id="risk-list">
@@ -277,7 +359,7 @@ output:
             </ul>
           </article>
 
-          <article class="panel">
+          <article class="panel reveal">
             <p class="section-label">Fix Plan</p>
             <h2>Prioritized next actions</h2>
             <ul class="risk-list" id="fix-plan">
@@ -286,9 +368,9 @@ output:
           </article>
         </section>
 
-        <section class="panel">
+        <section class="panel reveal" id="submission-report">
           <p class="section-label">Submission Report</p>
-          <h2>Markdown export generated by the agent</h2>
+          <h2>Markdown export generated by the live agent</h2>
           <div class="markdown-toolbar">
             <button class="button secondary" id="copy-markdown" type="button">
               Copy Markdown

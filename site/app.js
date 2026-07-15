@@ -16,6 +16,7 @@ const reviewerNotes = document.getElementById("reviewer-notes");
 const markdownOutput = document.getElementById("markdown-output");
 const copyMarkdownButton = document.getElementById("copy-markdown");
 const copyFeedback = document.getElementById("copy-feedback");
+const activityFeed = document.getElementById("activity-feed");
 
 const checkGrid = document.getElementById("check-grid");
 const flowGrid = document.getElementById("flow-grid");
@@ -39,8 +40,41 @@ const flowMap = [
   ["Read-back", "readBack"],
 ];
 
-function setStatus(message) {
+function nowLabel() {
+  return new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+}
+
+function setStatus(message, tone = "idle") {
   statusBox.textContent = message;
+  statusBox.classList.remove("status-running", "status-success", "status-error");
+  if (tone === "running") statusBox.classList.add("status-running");
+  if (tone === "success") statusBox.classList.add("status-success");
+  if (tone === "error") statusBox.classList.add("status-error");
+}
+
+function pushActivity(title, detail) {
+  if (!activityFeed) return;
+
+  const item = document.createElement("div");
+  item.className = "activity-item";
+  item.innerHTML = `
+    <div class="activity-dot"></div>
+    <div>
+      <strong>${title}</strong>
+      <div class="feed-meta">${detail}</div>
+      <div class="activity-time">${nowLabel()}</div>
+    </div>
+  `;
+
+  activityFeed.prepend(item);
+
+  while (activityFeed.children.length > 5) {
+    activityFeed.removeChild(activityFeed.lastElementChild);
+  }
 }
 
 function renderList(target, items, emptyMessage, formatter = (item) => item) {
@@ -87,8 +121,9 @@ function renderEvidence(target, items) {
 }
 
 function renderResult(result) {
-  verdictPill.textContent = result.summary.verdict.toLowerCase();
-  verdictPill.className = `pill ${result.summary.verdict.toLowerCase()}`;
+  const verdictClass = result.summary.verdict.toLowerCase();
+  verdictPill.textContent = verdictClass;
+  verdictPill.className = `pill ${verdictClass}`;
   profilePill.textContent = `profile: ${result.profile}`;
   repoTitle.textContent = result.summary.source;
   repoDescription.textContent = result.summary.description || result.goal;
@@ -112,7 +147,15 @@ function renderResult(result) {
 
   markdownOutput.textContent = result.markdown;
   lastMarkdown = result.markdown;
-  setStatus(`Analysis complete for ${result.summary.source}. Verdict: ${result.summary.verdict}.`);
+
+  setStatus(
+    `Analysis complete for ${result.summary.source}. Verdict: ${result.summary.verdict}.`,
+    "success"
+  );
+  pushActivity(
+    `Verdict: ${result.summary.verdict}`,
+    `${result.profile} profile finished with fit score ${result.summary.fitScore} on ${result.summary.source}.`
+  );
 }
 
 async function runAnalysis(event) {
@@ -122,14 +165,17 @@ async function runAnalysis(event) {
   const profile = profileInput.value;
 
   if (!repo) {
-    setStatus("Please enter a GitHub repository URL.");
+    setStatus("Please enter a GitHub repository URL.", "error");
     return;
   }
 
   runButton.disabled = true;
-  setStatus("Agent is fetching the repo and analyzing live signals...");
+  runButton.textContent = "Running...";
+  setStatus("Agent is fetching the repository and scanning live GenLayer signals...", "running");
   verdictPill.textContent = "running";
   verdictPill.className = "pill neutral";
+
+  pushActivity("Fetch started", `Loading ${repo} with the ${profile} profile.`);
 
   try {
     const response = await fetch("/api/analyze", {
@@ -140,6 +186,8 @@ async function runAnalysis(event) {
       body: JSON.stringify({ repo, profile }),
     });
 
+    pushActivity("Classification", "Repo fetched. The agent is scoring fit, execution, and proof signals.");
+
     const data = await response.json();
     if (!response.ok) {
       throw new Error(data.error || "Analysis failed.");
@@ -147,11 +195,33 @@ async function runAnalysis(event) {
 
     renderResult(data);
   } catch (error) {
-    setStatus(error.message || "Analysis failed.");
+    const message = error instanceof Error ? error.message : "Analysis failed.";
+    setStatus(message, "error");
     verdictPill.textContent = "error";
     verdictPill.className = "pill fail";
+    pushActivity("Runtime error", message);
   } finally {
     runButton.disabled = false;
+    runButton.textContent = "Run Agent";
+  }
+}
+
+function installRevealAnimations() {
+  const nodes = document.querySelectorAll(".reveal");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      }
+    },
+    { threshold: 0.12 }
+  );
+
+  for (const node of nodes) {
+    observer.observe(node);
   }
 }
 
@@ -162,7 +232,8 @@ for (const button of document.querySelectorAll(".preset-button")) {
     const repo = button.getAttribute("data-repo");
     if (repo && repo.startsWith("https://github.com/")) {
       repoInput.value = repo;
-      setStatus("Preset loaded. Run the agent when ready.");
+      setStatus("Preset loaded. Run the live agent when ready.");
+      pushActivity("Preset loaded", `Prepared ${repo} for analysis.`);
     } else {
       repoInput.focus();
       repoInput.select();
@@ -180,7 +251,10 @@ copyMarkdownButton.addEventListener("click", async () => {
   try {
     await navigator.clipboard.writeText(lastMarkdown);
     copyFeedback.textContent = "Markdown report copied.";
+    pushActivity("Report copied", "The generated submission markdown was copied to clipboard.");
   } catch {
     copyFeedback.textContent = "Clipboard permission was blocked.";
   }
 });
+
+installRevealAnimations();
